@@ -4,17 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Real or scam</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#e6eeff;--ink:#0f1b3d;--soft:#4a5680;--card:#ffffff;--line:#c5d1f2;--scam:#c81e3a;--real:#0b7d6e;--hi:#ffd23f;--on:#ffffff;
+:root{--bg:#f7f9ef;--ink:#231f20;--soft:#506056;--card:#ffffff;--line:#d9dfc0;--scam:#c0322b;--real:#00704a;--hi:#ffe873;--on:#ffffff;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1430;--ink:#eef2ff;--soft:#9aa7d6;--card:#16214a;--line:#2b3a73;--scam:#ff5c76;--real:#38d3bd;--on:#0c1430}}
-:root[data-theme="dark"]{--bg:#0c1430;--ink:#eef2ff;--soft:#9aa7d6;--card:#16214a;--line:#2b3a73;--scam:#ff5c76;--real:#38d3bd;--on:#0c1430}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121b16;--ink:#edf3ee;--soft:#a5b5aa;--card:#1c2a22;--line:#2c3d33;--scam:#ff7a6b;--real:#5fd49c;--on:#0c1410}}
+:root[data-theme="dark"]{--bg:#121b16;--ink:#edf3ee;--soft:#a5b5aa;--card:#1c2a22;--line:#2c3d33;--scam:#ff7a6b;--real:#5fd49c;--on:#0c1410}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45;min-height:100vh}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Barlow,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45;min-height:100vh}
 main{max-width:560px;margin:0 auto;padding:20px 18px 40px}
-h1{font-size:clamp(2.4rem,9vw,3.6rem);line-height:.95;margin:8px 0 6px;font-weight:800;letter-spacing:-.03em}
+h1,h2,.big{font-family:"Barlow Condensed","Arial Narrow",sans-serif}
+h1{font-size:clamp(3rem,12vw,4.6rem);line-height:.95;margin:8px 0 10px;font-weight:700;width:fit-content;background:linear-gradient(var(--hi),var(--hi)) 0 88%/100% .36em no-repeat;animation:swipe .7s .1s ease both}
 .sub{color:var(--soft);margin:0 0 22px}
 .bar{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}
 .track{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px}
@@ -36,7 +37,7 @@ button:disabled{opacity:.45;cursor:default}
 .ok h2{color:var(--real)}.no h2{color:var(--scam)}
 .streak{font-weight:700}
 ol{padding-left:1.2rem}li{margin:8px 0}
-.big{font-size:4rem;font-weight:800;line-height:1;margin:6px 0}
+.big{font-size:5rem;font-weight:700;line-height:1;margin:6px 0}
 .foot{color:var(--soft);font-size:.85rem;margin-top:28px}
 .lesson h2{font-size:1.5rem;margin:0 0 10px}.lesson ol{padding-left:0;list-style:none;margin:0 0 16px}.lesson li{margin:0 0 12px;padding:12px 14px;background:var(--card);border-left:6px solid var(--hi);border-radius:8px}.lesson b{display:block;font-size:1.05rem}.fix{padding:14px;border:2px solid var(--ink);border-radius:12px;margin-bottom:16px}
 label{display:block;font-weight:700;margin-bottom:6px}input{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}input:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
@@ -44,13 +45,19 @@ label{display:block;font-weight:700;margin-bottom:6px}input{font:inherit;width:1
 .lesson p{margin:0 0 12px}.lesson ol ol{margin:0}.fix b{display:inline}.lnav{display:flex;gap:12px;margin-top:14px}.lnav button{flex:1;margin:0}.lnav .next{flex:2}
 .alt{background:var(--card);color:var(--ink);border:2px solid var(--ink);padding:10px 16px;font-size:1rem;margin:0 0 14px}.again+.alt{width:100%;margin:10px 0 0}
 a.back{display:block;text-align:center;margin-top:14px;color:var(--ink);font-weight:700}
+@keyframes swipe{from{background-size:0 .36em}to{background-size:100% .36em}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg,.fb,.step{animation:rise .3s ease both}
+button{transition:filter .15s}button:not(:disabled):hover{filter:brightness(1.08)}
+.wavebar{height:10px;margin:0 0 18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='18' viewBox='0 0 80 18'%3E%3Cpath d='M0 9Q20 0 40 9T80 9' fill='none' stroke='%2300a160' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 center/auto 10px}
 [hidden]{display:none!important}
-@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}h1{background-size:100% .36em}}
 </style>
 </head>
 <body>
 <main>
 <h1>Real or scam</h1>
+<div class="wavebar" aria-hidden="true"></div>
 <p class="sub">Ten messages. Some are fake. Spot which ones before you tap.</p>
 
 <section id="lesson" class="lesson">
@@ -183,7 +190,7 @@ function show(){
  $("count").textContent=(i+1)+" of "+q.length;
  $("fill").style.width=(i/q.length*100)+"%";
  $("chan").textContent=m.c;$("when").textContent="from "+m.f;
- $("from").textContent=m.f;$("text").textContent=m.t;
+ $("from").textContent=m.f;$("text").textContent=m.t;var mb=document.querySelector(".msg");mb.style.animation="none";void mb.offsetWidth;mb.style.animation="";
  $("stat").textContent=score+" right"+(streak>1?" · streak "+streak:"");
  $("bReal").disabled=false;$("bScam").disabled=false;$("fb").hidden=true;
 }
