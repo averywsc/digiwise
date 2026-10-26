@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digiwise at Western Springs College</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f1f6f1;--ink:#231f20;--soft:#4d5a52;--band:#dcecdf;--accent:#00704a;--mark:#fff0a0;--line:#c3d6c8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121b16;--ink:#edf3ee;--soft:#a5b5aa;--band:#1c2a22;--accent:#5fd49c;--mark:#4a4416;--line:#2c3d33}}
+:root[data-theme="dark"]{--bg:#121b16;--ink:#edf3ee;--soft:#a5b5aa;--band:#1c2a22;--accent:#5fd49c;--mark:#4a4416;--line:#2c3d33}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Barlow,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.1rem;line-height:1.55}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+header{background:var(--band);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px;padding-bottom:16px;gap:12px;flex-wrap:wrap}
+.mark{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:700;font-size:1.6rem}
+.school{color:var(--soft);font-size:.95rem}
+h1,h2{font-family:"Barlow Condensed","Arial Narrow",sans-serif;line-height:1;margin:0}
+h1{font-size:clamp(3rem,13vw,5.5rem);font-weight:700;padding:56px 0 22px;max-width:11ch}
+h2{font-size:1.9rem;font-weight:600;margin-bottom:14px}
+a.go{display:inline-block;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+section{padding:36px 0;border-top:1px solid var(--line);margin-top:36px}
+ol{padding-left:1.3rem;margin:0;max-width:36em}
+li{margin:0 0 10px}
+.games li b{font-weight:600}
+.games .t{color:var(--soft)}
+.lb{max-width:none}
+.lb li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;margin:0;border-bottom:1px solid var(--line)}
+.lb li:first-child{background:var(--mark);padding-left:10px;padding-right:10px;font-weight:600}
+.note{color:var(--soft);margin:0}
+footer{padding:28px 0 48px;color:var(--soft);font-size:.95rem}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="mark">Digiwise</span><span class="school">Western Springs College</span></div></header>
+
+<main class="wrap">
+ <h1>Stay safe online</h1>
+ <a class="go" href="https://claude.ai/artifact/QWfm78Ask99gerkYP7YbJU">Play the first game, Real or scam</a>
+
+ <section>
+  <h2>How the term works</h2>
+  <ol>
+   <li>A new game every two weeks in form time.</li>
+   <li>Each game covers a different topic.</li>
+   <li>Your points add up across the term.</li>
+   <li>The top player at the end of the term wins a prize.</li>
+  </ol>
+ </section>
+
+ <section>
+  <h2>Leaderboard</h2>
+  <ol class="lb" id="lb"></ol>
+  <p class="note" id="lbnote">Loading scores.</p>
+ </section>
+
+ <section>
+  <h2>The five games</h2>
+  <ol class="games">
+   <li><b>Real or scam</b> <span class="t">Scams.</span> Read ten messages and decide which ones are fake.</li>
+   <li><b>Spot the AI</b> <span class="t">AI.</span> Tell real photos and writing from ones an AI made.</li>
+   <li><b>Password showdown</b> <span class="t">Accounts.</span> Build passwords and see how long they would take to crack.</li>
+   <li><b>Fact or fake</b> <span class="t">Misinformation.</span> Judge posts and headlines before you share them.</li>
+   <li><b>Share or don’t</b> <span class="t">Privacy.</span> Decide what is safe to post and see what a photo gives away.</li>
+  </ol>
+ </section>
+</main>
+
+<footer><div class="wrap">Run by the Digiwise leaders at Western Springs College. Questions or ideas for a game? Talk to a Digiwise leader.</div></footer>
+
+<script>
+(function(){
+ // Set this to the address of the api folder on the project space. It must start with https.
+ var API="https://YOUR-PROJECT-SPACE-ADDRESS/api/";
+ var ol=document.getElementById("lb"),note=document.getElementById("lbnote");
+ fetch(API+"scores.php").then(function(r){return r.json()}).then(function(d){
+  if(!d.rows||!d.rows.length){note.textContent="No scores yet. Play the first game to get on the board.";return}
+  note.hidden=true;
+  d.rows.forEach(function(r){
+   var li=document.createElement("li"),a=document.createElement("span"),b=document.createElement("span");
+   a.textContent=r.name+" "+r.form;b.textContent=r.total+" points";
+   li.appendChild(a);li.appendChild(b);ol.appendChild(li);
+  });
+ }).catch(function(){note.textContent="The leaderboard isn’t available right now."});
+})();
+</script>
+</body>
+</html>
