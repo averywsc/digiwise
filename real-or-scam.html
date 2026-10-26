@@ -164,14 +164,14 @@ var S=[
 {c:"Text",f:"Phone provider",t:"Your bill is ready. View it in the app or on our website whenever you like.",a:"real",w:"Calm, no link and no threat. It sends you to the app you already have."}
 ];
 var $=function(i){return document.getElementById(i)};
-var API="https://projectspace.nz/xbbhjgpp/digiwise/api/";
+var API="https://projectspace.nz/xbbhjgpp/digiwise/";
 var q,i,score,streak,best,done=0,who={name:"",form:""};
 function save(){
  var st=$("saved"),rt=$("retry");st.textContent="Saving your score.";rt.hidden=true;
  fetch(API+"submit.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:who.name,form:who.form,game:"real-or-scam",points:score*10})})
  .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d}})})
  .then(function(x){if(x.ok){st.textContent="Score saved. Your best score this term is the one that counts."}else{st.textContent=(x.d&&x.d.error)||"Couldn’t save your score.";rt.hidden=false}})
- .catch(function(){st.textContent="Couldn’t reach the leaderboard. Check your connection and try again.";rt.hidden=false});
+ .catch(function(e){console.error("Save failed",e);st.textContent="Couldn’t reach the leaderboard. Check your connection and try again.";rt.hidden=false});
 }
 
 function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t}return a}
