@@ -40,7 +40,7 @@ footer{padding:28px 0 48px;color:var(--soft);font-size:.95rem}
 
 <main class="wrap">
  <h1>Stay safe online</h1>
- <a class="go" href="https://claude.ai/artifact/QWfm78Ask99gerkYP7YbJU">Play the first game, Real or scam</a>
+ <a class="go" href="real-or-scam.html">Play the first game, Real or scam</a>
 
  <section>
   <h2>How the term works</h2>
@@ -75,7 +75,7 @@ footer{padding:28px 0 48px;color:var(--soft);font-size:.95rem}
 <script>
 (function(){
  // Set this to the address of the api folder on the project space. It must start with https.
- var API="https://YOUR-PROJECT-SPACE-ADDRESS/api/";
+ var API="https://projectspace.nz/xbbhjgpp/digiwise/api/";
  var ol=document.getElementById("lb"),note=document.getElementById("lbnote");
  fetch(API+"scores.php").then(function(r){return r.json()}).then(function(d){
   if(!d.rows||!d.rows.length){note.textContent="No scores yet. Play the first game to get on the board.";return}
