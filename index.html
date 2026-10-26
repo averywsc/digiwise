@@ -77,7 +77,7 @@ footer{padding:28px 0 48px;color:var(--soft);font-size:.95rem}
  // Address of the digiwise folder on the project space. It must start with https.
  var API="https://projectspace.nz/xbbhjgpp/digiwise/";
  var ol=document.getElementById("lb"),note=document.getElementById("lbnote");
- fetch(API+"scores.php").then(function(r){return r.json()}).then(function(d){
+ fetch(API+"scores.php").then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(function(d){
   if(!d.rows||!d.rows.length){note.textContent="No scores yet. Play the first game to get on the board.";return}
   note.hidden=true;
   d.rows.forEach(function(r){
@@ -85,7 +85,7 @@ footer{padding:28px 0 48px;color:var(--soft);font-size:.95rem}
    a.textContent=r.name+" "+r.form;b.textContent=r.total+" points";
    li.appendChild(a);li.appendChild(b);ol.appendChild(li);
   });
- }).catch(function(e){console.error("Leaderboard failed",e);note.textContent="The leaderboard isn’t available right now."});
+ }).catch(function(e){console.error("Leaderboard failed",e);note.textContent="The leaderboard isn’t available right now. Tried "+API+"scores.php and got "+e.message+".";});
 })();
 </script>
 </body>
