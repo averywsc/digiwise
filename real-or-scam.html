@@ -3,247 +3,333 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Real or scam</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap">
+<meta name="theme-color" content="#140a2e">
+<title>Real or scam | Digiwise</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Barlow:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#f7f9ef;--ink:#231f20;--soft:#506056;--card:#ffffff;--line:#d9dfc0;--scam:#c0322b;--real:#00704a;--hi:#ffe873;--on:#ffffff;
+:root{color-scheme:dark;--bg:#140a2e;--pan:#1f1147;--ink:#f4efff;--soft:#b7a9e0;--pink:#ff3d9a;--cyan:#27e1ff;--yel:#ffd23f;--grn:#3dff9a;--red:#ff4d5e;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121b16;--ink:#edf3ee;--soft:#a5b5aa;--card:#1c2a22;--line:#2c3d33;--scam:#ff7a6b;--real:#5fd49c;--on:#0c1410}}
-:root[data-theme="dark"]{--bg:#121b16;--ink:#edf3ee;--soft:#a5b5aa;--card:#1c2a22;--line:#2c3d33;--scam:#ff7a6b;--real:#5fd49c;--on:#0c1410}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Barlow,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45;min-height:100vh}
-main{max-width:560px;margin:0 auto;padding:20px 18px 40px}
-h1,h2,.big{font-family:"Barlow Condensed","Arial Narrow",sans-serif}
-h1{font-size:clamp(3rem,12vw,4.6rem);line-height:.95;margin:8px 0 10px;font-weight:700;width:fit-content;background:linear-gradient(var(--hi),var(--hi)) 0 88%/100% .36em no-repeat;animation:swipe .7s .1s ease both}
-.sub{color:var(--soft);margin:0 0 22px}
-.bar{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}
-.track{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px}
-.fill{height:100%;width:0;background:var(--ink);transition:width .3s}
-.meta{display:flex;align-items:center;gap:8px;color:var(--soft);font-size:.9rem;margin-bottom:8px}
-.chan{background:var(--hi);color:#0f1b3d;font-weight:700;padding:2px 10px;border-radius:99px;font-size:.85rem}
-.msg{background:var(--card);border:2px solid var(--ink);border-radius:22px 22px 22px 4px;padding:18px 20px;font-size:1.2rem;min-height:140px;word-break:break-word}
-.from{font-weight:800;margin-bottom:8px}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-button{font:inherit;cursor:pointer;border:0;border-radius:16px;padding:18px 10px;font-weight:800;font-size:1.25rem}
-button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-button:disabled{opacity:.45;cursor:default}
-.real{background:var(--real);color:var(--on)}
-.scam{background:var(--scam);color:var(--on)}
-.next,.again{background:var(--ink);color:var(--bg);width:100%;margin-top:14px}
-.fb{margin-top:16px;padding:16px 18px;border-radius:16px;background:var(--card);border:2px solid var(--line)}
-.fb h2{margin:0 0 6px;font-size:1.4rem}
-.fb p{margin:0}
-.ok h2{color:var(--real)}.no h2{color:var(--scam)}
-.streak{font-weight:700}
-ol{padding-left:1.2rem}li{margin:8px 0}
-.big{font-size:5rem;font-weight:700;line-height:1;margin:6px 0}
-.foot{color:var(--soft);font-size:.85rem;margin-top:28px}
-.lesson h2{font-size:1.5rem;margin:0 0 10px}.lesson ol{padding-left:0;list-style:none;margin:0 0 16px}.lesson li{margin:0 0 12px;padding:12px 14px;background:var(--card);border-left:6px solid var(--hi);border-radius:8px}.lesson b{display:block;font-size:1.05rem}.fix{padding:14px;border:2px solid var(--ink);border-radius:12px;margin-bottom:16px}
-label{display:block;font-weight:700;margin-bottom:6px}input{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}input:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.board{margin-top:28px;padding:16px 18px;background:var(--card);border:2px solid var(--line);border-radius:16px}.board h2{margin:0 0 4px;font-size:1.3rem}.board p{margin:0 0 8px;color:var(--soft);font-size:.9rem}.lb{list-style:none;padding:0;margin:0}.lb li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:7px 0;margin:0}.lb .me{font-weight:800}.lb small{color:var(--soft);font-weight:400}
-.lesson p{margin:0 0 12px}.lesson ol ol{margin:0}.fix b{display:inline}.lnav{display:flex;gap:12px;margin-top:14px}.lnav button{flex:1;margin:0}.lnav .next{flex:2}
-.alt{background:var(--card);color:var(--ink);border:2px solid var(--ink);padding:10px 16px;font-size:1rem;margin:0 0 14px}.again+.alt{width:100%;margin:10px 0 0}
-a.back{display:block;text-align:center;margin-top:14px;color:var(--ink);font-weight:700}
-@keyframes swipe{from{background-size:0 .36em}to{background-size:100% .36em}}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.msg,.fb,.step{animation:rise .3s ease both}
-button{transition:filter .15s}button:not(:disabled):hover{filter:brightness(1.08)}
-.wavebar{height:10px;margin:0 0 18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='18' viewBox='0 0 80 18'%3E%3Cpath d='M0 9Q20 0 40 9T80 9' fill='none' stroke='%2300a160' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 center/auto 10px}
+body{margin:0;min-height:100vh;color:var(--ink);font:1.05rem/1.45 Barlow,system-ui,sans-serif;background:radial-gradient(700px 360px at 80% -80px,rgba(255,61,154,.28),transparent),radial-gradient(700px 360px at 0 0,rgba(39,225,255,.2),transparent),var(--bg)}
+main{max-width:520px;margin:0 auto;padding:16px 16px 36px}
+h1,h2,.pix{font-family:Bungee,Impact,sans-serif;font-weight:400;margin:0;line-height:1.05}
+h1{font-size:clamp(2rem,9vw,2.8rem);color:var(--yel);text-shadow:3px 3px 0 var(--pink),6px 6px 0 rgba(0,0,0,.35)}
+h2{font-size:1.15rem;color:var(--cyan);margin-bottom:10px}
+p{margin:0 0 10px}.soft{color:var(--soft)}
+button,input{font:inherit}
+button{cursor:pointer;border:0;border-radius:14px;padding:14px 18px;font-family:Bungee,sans-serif;color:#1a0b3a;background:var(--yel);box-shadow:0 5px 0 #b88a00;touch-action:manipulation;transition:transform .08s,box-shadow .08s}
+button:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #b88a00}
+button:disabled{opacity:.4;cursor:default}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+a{color:var(--cyan);font-weight:700}
+.panel{background:var(--pan);border:2px solid #3a2380;border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px;padding:0;list-style:none}
+.chips li{flex:1 1 44%;padding:8px 10px;border-radius:12px;background:#2a1860;border-left:5px solid var(--c);font-size:.95rem}
+.chips b{display:block;color:var(--c)}
+label{display:block;font-weight:700;margin:10px 0 4px;color:var(--yel)}
+input{width:100%;padding:12px;border-radius:12px;border:2px solid #3a2380;background:#120828;color:var(--ink)}
+.err{color:var(--red);font-weight:700;min-height:1.4em;margin:8px 0 0}
+.wide{width:100%;margin-top:10px;font-size:1.1rem}
 [hidden]{display:none!important}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}h1{background-size:100% .36em}}
+
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:Bungee,sans-serif;font-size:.95rem}
+.hearts{color:var(--pink);letter-spacing:3px;font-size:1.3rem}
+.hearts .x{color:#4a3478}
+#strk{color:var(--yel)}#wv{color:var(--cyan)}
+.prog{height:8px;background:#2a1860;border-radius:9px;overflow:hidden;margin-bottom:10px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));transition:width .25s}
+.lane{touch-action:none;position:relative;height:clamp(330px,54vh,480px);overflow:hidden;border-radius:18px;border:3px solid var(--cyan);box-shadow:0 0 24px rgba(39,225,255,.35),inset 0 0 30px rgba(0,0,0,.5);
+background:linear-gradient(180deg,rgba(20,10,46,.2),rgba(255,61,154,.12)),repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 2px,transparent 2px 36px),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 48px),#0d0623;animation:grid 1.6s linear infinite}
+.lane.slow{border-color:var(--yel);box-shadow:0 0 30px rgba(255,210,63,.5),inset 0 0 40px rgba(255,210,63,.18)}
+.lane::after{content:"DELIVERED";position:absolute;left:0;right:0;bottom:0;padding:5px 0;text-align:center;font:.75rem Bungee,sans-serif;letter-spacing:.2em;color:var(--red);border-top:3px dashed var(--red);background:linear-gradient(0deg,rgba(255,77,94,.28),transparent);pointer-events:none}
+.card{position:absolute;left:10px;right:10px;top:0;padding:10px 13px 11px;border-radius:14px;background:#2d1a6b;border:2px solid #4b30a0;border-left:8px solid var(--c);will-change:transform}
+.card.on{border-color:#fff;border-left-color:var(--c);box-shadow:0 0 0 3px rgba(255,255,255,.25),0 0 20px var(--c)}
+.card b{font-size:1.05rem}
+.card p{margin:2px 0 0;font-size:1rem;line-height:1.35;word-break:break-word}
+.ch{float:right;margin-left:8px;font:.7rem Bungee,sans-serif;padding:3px 9px;border-radius:99px;color:#1a0b3a;background:var(--c)}
+.gone{transition:translate .45s ease-in,opacity .45s .1s;opacity:0}
+.gone.l{translate:-120% 0}.gone.r{translate:120% 0}.gone.d{translate:0 50px}
+.lane.hit{animation:shake .3s}
+.dot{position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;animation:pop .6s ease-out forwards}
+#wave{position:absolute;inset:40% 0 auto;text-align:center;font:1.7rem Bungee,sans-serif;color:var(--yel);text-shadow:3px 3px 0 var(--pink);pointer-events:none;opacity:0}
+#wave.on{animation:wv 1.3s ease-out}
+.pad{display:grid;grid-template-columns:1fr .8fr 1fr;gap:10px;margin-top:12px}
+.pad button{padding:18px 6px;font-size:1.15rem}
+.pad small{display:block;font:500 .72rem Barlow,sans-serif;opacity:.75;margin-top:2px}
+.pad .blk{background:var(--red);box-shadow:0 5px 0 #a02030;color:#fff}.pad .blk:active:not(:disabled){box-shadow:0 1px 0 #a02030}
+.pad .keep{background:var(--grn);box-shadow:0 5px 0 #14a05a}.pad .keep:active:not(:disabled){box-shadow:0 1px 0 #14a05a}
+.pad .slo{background:var(--cyan);box-shadow:0 5px 0 #1587a0;font-size:.85rem}.pad .slo:active:not(:disabled){box-shadow:0 1px 0 #1587a0}
+#fb{margin-top:12px;min-height:5.4rem;padding:11px 15px;border-radius:14px;background:var(--pan);border:2px solid #3a2380}
+#fb b{display:block}#fb.ok b{color:var(--grn)}#fb.no b{color:var(--red)}
+#fb p{margin:0;color:var(--soft);font-size:.97rem}
+
+.big{font:6rem/1 Bungee,sans-serif;background:linear-gradient(180deg,var(--yel),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:1.5rem;color:var(--soft);-webkit-text-fill-color:var(--soft)}
+.miss{list-style:none;padding:0;margin:0}
+.miss li{padding:9px 0;border-bottom:1px solid #3a2380}.miss li:last-child{border:0}
+.miss span{display:block;color:var(--soft);font-size:.97rem}
+.stats{display:flex;gap:8px;margin:6px 0 14px}.stats div{flex:1;background:var(--pan);border-radius:12px;padding:8px;text-align:center;font:.8rem Bungee,sans-serif;color:var(--soft)}.stats b{display:block;font-size:1.4rem;color:var(--cyan)}
+.foot{color:var(--soft);font-size:.85rem;margin-top:24px}
+.card.in{animation:in .35s ease-out}
+.card.hot{border-color:var(--red);animation:hot .45s infinite alternate}
+.gone::after{content:attr(data-s);position:absolute;right:12px;top:50%;margin-top:-1.3rem;font:1.7rem Bungee,sans-serif;padding:0 10px;color:var(--sc);border:4px solid var(--sc);border-radius:8px;rotate:-12deg;background:rgba(20,10,46,.85)}
+.card.bonus{z-index:3;text-align:center;font:1rem Bungee,sans-serif;color:#2a1860;background:linear-gradient(135deg,#ffd23f,#ff9f1c);border:3px solid #fff;cursor:pointer;animation:bob .7s ease-in-out infinite alternate;box-shadow:0 0 24px #ffd23f}
+.pop{position:absolute;left:50%;translate:-50% 0;white-space:nowrap;font:1.3rem Bungee,sans-serif;color:var(--yel);text-shadow:2px 2px 0 var(--pink);pointer-events:none;animation:up .9s ease-out forwards;z-index:4}
+.flash{position:fixed;inset:0;pointer-events:none;box-shadow:inset 0 0 90px 24px rgba(255,77,94,.75);opacity:0}
+.flash.on{animation:fl .5s}
+#strk.fire{color:#ff9f1c;text-shadow:0 0 12px var(--pink);animation:fire .5s infinite alternate}
+@keyframes in{from{scale:.75;opacity:0}}
+@keyframes hot{to{box-shadow:0 0 0 3px rgba(255,77,94,.7),0 0 22px var(--red)}}
+@keyframes bob{to{scale:1.07}}
+@keyframes up{to{translate:-50% -80px;opacity:0}}
+@keyframes fl{from{opacity:1}to{opacity:0}}
+@keyframes fire{to{scale:1.25}}
+@media (min-width:900px){
+ main{max-width:820px}
+ #intro{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start}
+ #intro .panel:nth-child(3){grid-column:2;grid-row:1/3}
+ body.playing{overflow:hidden}
+ body.playing h1,body.playing .sub,body.playing .foot{display:none}
+ body.playing main{max-width:none;padding:0}
+ .arena{display:grid;grid-template-columns:1fr minmax(320px,30vw);gap:18px;height:100dvh;padding:18px}
+ .lcol{min-height:0}.lcol .lane{height:100%}
+ .side{display:flex;flex-direction:column;gap:12px;min-height:0;justify-content:flex-start}
+ .side #fb{flex:1;margin:0;min-height:0;overflow:auto;font-size:clamp(1.05rem,1.4vw,1.6rem)}.side #fb b{font-size:clamp(1.15rem,1.6vw,1.8rem)}
+ .side .pad{margin:0}.side .pad button{padding:clamp(18px,4vh,48px) 6px;font-size:clamp(1.15rem,1.6vw,1.7rem)}
+ .card{left:0;right:0;margin:0 auto;width:min(92%,740px);padding:14px 18px 15px}
+ .card.bonus{width:auto;margin:0;padding:10px}
+ .card p{font-size:clamp(1rem,1.35vw,1.5rem)}.card b{font-size:clamp(1.05rem,1.5vw,1.65rem)}
+ .hud{font-size:clamp(1rem,1.3vw,1.4rem)}.hearts{font-size:clamp(1.3rem,2vw,2rem)}
+ #wave{font-size:clamp(1.7rem,3vw,3rem)}
+}
+@keyframes grid{to{background-position:0 36px,0 0,0 0}}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+@keyframes pop{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+@keyframes wv{0%{opacity:0;transform:scale(.6)}20%{opacity:1;transform:scale(1.1)}80%{opacity:1}100%{opacity:0;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <main>
 <h1>Real or scam</h1>
-<div class="wavebar" aria-hidden="true"></div>
-<p class="sub">Ten messages. Some are fake. Spot which ones before you tap.</p>
+<p class="soft sub" style="margin-top:10px">Messages drop into your inbox. Block the scams, keep the real ones.</p>
 
-<section id="lesson" class="lesson">
- <div class="bar"><span id="lstep">Step 1 of 4</span></div>
- <div class="track"><div class="fill" id="lfill"></div></div>
-
- <div class="step">
-  <h2>What scammers actually want</h2>
-  <p>Scammers rarely out-hack anyone. They want you to act on a feeling before you think. Most of the time they’re after one of these.</p>
-  <ol>
-   <li><b>Your money</b>Fake fees, fake sellers and requests for gift cards.</li>
-   <li><b>Your logins</b>A fake sign-in page that copies your password and your code.</li>
-   <li><b>Your accounts</b>Once they’re in, they message your friends as you and the scam spreads.</li>
-   <li><b>Your personal info</b>Your name, address, ID and photos can be used or sold.</li>
-  </ol>
-  <p>Anyone can get caught. Being rushed, tired or scrolling fast is when it happens.</p>
+<section id="intro">
+ <div class="panel">
+  <h2>Spot the four tells</h2>
+  <ul class="chips">
+   <li style="--c:var(--pink)"><b>Pressure</b>A deadline or countdown.</li>
+   <li style="--c:var(--cyan)"><b>Odd link</b>Extra words, dashes, a zero for an o.</li>
+   <li style="--c:var(--yel)"><b>It asks</b>A password, a code, card details or money first.</li>
+   <li style="--c:var(--grn)"><b>Too good or scary</b>Free prizes, refunds, accounts about to vanish.</li>
+  </ul>
+  <p class="soft" style="margin:0">Two or more tells is almost always a scam.</p>
  </div>
-
- <div class="step" hidden>
-  <h2>The five tells</h2>
-  <ol>
-   <li><b>Pressure</b>You have 24 hours, act now, last chance. Real organisations give you time and more than one way to sort things out.</li>
-   <li><b>A strange link</b>Read the address slowly. Look for a zero in place of an o, extra words, dashes and odd endings.</li>
-   <li><b>It asks for something</b>Passwords, one-time codes, card details, or payment before you get anything. No real service needs your code.</li>
-   <li><b>Too good or too scary</b>Free Nitro, a surprise refund, an account about to be deleted. Both pull on your emotions.</li>
-   <li><b>It doesn’t sound like them</b>A mate who never sends links suddenly does. A company says Dear user instead of your name.</li>
-  </ol>
-  <p>One tell is a warning. Two or more is almost always a scam.</p>
+ <div class="panel">
+  <h2>How to play</h2>
+  <p style="margin:0">Decide on the lowest message before it lands. 15 messages in 3 waves, 3 lives. Three right in a row charges Slow time. Left arrow blocks, right arrow keeps, space slows. On a phone, swipe a message or use the buttons. Tap the gold shields for a free life.</p>
  </div>
-
- <div class="step" hidden>
-  <h2>Check before you tap</h2>
-  <ol>
-   <li><b>Stop</b>Nothing real is so urgent it can’t wait two minutes.</li>
-   <li><b>Look at who sent it</b>Check the name, the number and the address, not just the logo.</li>
-   <li><b>Don’t tap the link</b>Open the real app yourself or type the site into your browser.</li>
-   <li><b>Ask</b>Message the person on another app, or ask a parent, teacher or friend.</li>
-   <li><b>Search it</b>Search the message online. Scams get reported fast and others will have seen it.</li>
-  </ol>
-  <div class="fix"><b>Address check.</b> A real address ends right after the name, like nzpost.co.nz. A fake adds extra words and dashes, like nzpost-redeliver.co.</div>
+ <div class="panel">
+  <p style="margin:0">You get one attempt at this game. Use exactly the same first name and form class in every Digiwise game, so your scores add up on the leaderboard.</p>
+  <label for="nick">First name</label><input id="nick" maxlength="20" autocomplete="given-name">
+  <label for="form">Form class</label><input id="form" maxlength="6" autocomplete="off">
+  <p class="err" id="err" role="alert"></p>
+  <button class="wide" id="go">Start</button>
  </div>
-
- <div class="step" hidden>
-  <h2>If you already tapped</h2>
-  <p>It happens to smart people. What matters is what you do next.</p>
-  <ol>
-   <li><b>Stop and don’t reply</b>Don’t tap anything else or enter more details.</li>
-   <li><b>Lock it down</b>Change the password on that account and anywhere you reuse it. Turn on two-factor sign-in and log out other devices.</li>
-   <li><b>Money or card details went</b>Contact your bank straight away.</li>
-   <li><b>Tell someone</b>A parent or teacher can help quickly, and nobody will think you’re dumb.</li>
-   <li><b>Report it</b>Forward scam texts free to 7726 and report scams to Netsafe at netsafe.org.nz.</li>
-  </ol>
-  <p>Last thing. Enter your first name and form class so your score counts on the Digiwise leaderboard.</p>
-  <label for="nick">First name</label>
-  <input id="nick" maxlength="20" autocomplete="given-name">
-  <label for="form" style="margin-top:12px">Form class</label>
-  <input id="form" maxlength="6" autocomplete="off">
-  <p id="lerr" role="alert" style="color:var(--scam);font-weight:700;margin:10px 0 0"></p>
- </div>
-
- <div class="lnav"><button class="alt" id="lback" hidden>Back</button><button class="next" id="lnext">Next</button></div>
 </section>
 
-<section id="game" hidden>
- <button class="alt" id="toLesson">Back to lesson</button>
- <div class="bar"><span id="count">1 of 10</span><span class="streak" id="stat"></span></div>
- <div class="track"><div class="fill" id="fill"></div></div>
- <div class="meta"><span class="chan" id="chan"></span><span id="when"></span></div>
- <div class="msg"><div class="from" id="from"></div><div id="text"></div></div>
- <div class="btns">
-  <button class="real" id="bReal">Real</button>
-  <button class="scam" id="bScam">Scam</button>
- </div>
- <div class="fb" id="fb" hidden aria-live="polite">
-  <h2 id="verdict"></h2>
-  <p id="why"></p>
-  <button class="next" id="next">Next message</button>
+<section id="play" hidden>
+ <div class="arena">
+  <div class="lcol"><div class="lane" id="lane"><div id="wave"></div></div></div>
+  <div class="side">
+   <div class="hud"><span class="hearts" id="hp" aria-label="Lives"></span><span id="strk"></span><span id="wv"></span></div>
+   <div class="prog"><i id="bar"></i></div>
+   <div id="fb" aria-live="polite"><p>Decide on the glowing message before it hits the red line.</p></div>
+   <div class="pad">
+    <button class="blk" id="bBlock">Block<small>left arrow</small></button>
+    <button class="slo" id="bSlow" disabled>Slow time<small id="chg">space</small></button>
+    <button class="keep" id="bKeep">Keep<small>right arrow</small></button>
+   </div>
+  </div>
  </div>
 </section>
 
 <section id="end" hidden>
- <div class="big" id="final"></div>
- <h2 id="rating"></h2>
- <p>Three things that beat most scams.</p>
- <ol>
-  <li>Urgency plus a link is the classic combo. Slow down.</li>
-  <li>Don’t tap the link. Open the real app or site yourself.</li>
-  <li>If a friend sends something odd, message them somewhere else to check it was really them.</li>
- </ol>
- <p id="saved" aria-live="polite" style="font-weight:700"></p>
- <button class="alt" id="retry" hidden>Try saving again</button>
- <button class="again" id="again">Play again</button>
- <button class="alt" id="toLesson2">Back to lesson</button>
- <a class="back" href="index.html">Back to Digiwise</a>
+ <div class="big"><span id="final"></span><small>/100</small></div>
+ <h2 id="rating" style="color:var(--yel);margin-top:6px"></h2>
+ <div class="stats"><div><b id="sRight"></b>right</div><div><b id="sStrk"></b>best streak</div><div><b id="sLife"></b>lives left</div></div>
+ <div class="panel" id="missed"></div>
+ <div class="panel">
+  <h2>If you tap one by mistake</h2>
+  <ul class="miss"><li>Stop, and don’t enter anything else.</li><li>Change the password on that account and anywhere you reuse it.</li><li>Tell a parent or teacher. Nobody will think you’re dumb.</li><li>Forward scam texts free to 7726 and report at <a href="https://netsafe.org.nz" rel="noopener">netsafe.org.nz</a>.</li></ul>
+ </div>
+ <p id="saved" aria-live="polite" style="font-weight:700;margin-bottom:4px"></p>
+ <p id="tot" class="soft"></p>
+ <button class="wide" id="retry" hidden style="background:#fff">Try saving again</button>
+ <p class="soft" style="margin-top:10px">Play the other Digiwise games with the same name and form class so your points add up.</p>
+ <p style="text-align:center;margin-top:16px"><a href="index.html">Back to Digiwise</a></p>
 </section>
-
-<p class="foot">Made for Digiwise. All messages here are made up. Your first name, form class and best score are saved so the school leaderboard works.</p>
+<p class="foot">Made for Digiwise. All messages here are made up. Your first name, form class and score are saved so the school leaderboard works.</p>
 </main>
+<div class="flash" id="flash"></div>
 
 <script>
 var S=[
 {c:"Text",f:"NZ Post",t:"Your parcel couldn’t be delivered. Pay a $2.50 redelivery fee at nzpost-redeliver.co or it will be returned.",a:"scam",w:"A surprise fee, a deadline and an odd web address. Couriers don’t ask for card details by text."},
-{c:"Snapchat",f:"your mate",t:"bro is this you in this video lol snapvid-watch.com/u/8841",a:"scam",w:"A hacked account sending the same line to everyone. If a friend sends a random link with no context, ask them on another app before you tap."},
-{c:"Email",f:"Google",t:"New sign-in on a Windows device. If this was you, you don’t need to do anything. If it wasn’t, go to your Google Account and review your security.",a:"real",w:"No pressure and no link demanded. It tells you to go to your own account. Even so, open the account yourself instead of using any link."},
+{c:"Snapchat",f:"your mate",t:"bro is this you in this video lol snapvid-watch.com/u/8841",a:"scam",w:"A hacked account sending the same line to everyone. Ask them on another app before you tap."},
+{c:"Email",f:"Google",t:"New sign-in on a Windows device. If this was you, you don’t need to do anything. If it wasn’t, review your account security.",a:"real",w:"No pressure and no link demanded. Even so, open your account yourself instead of using any link."},
 {c:"Instagram",f:"Instagram Support",t:"Your account will be deleted in 24 hours due to a copyright violation. Appeal now at ig-appeal-center.net",a:"scam",w:"Fear, a countdown and a look-alike domain. Real appeals happen inside the app."},
-{c:"Text",f:"School Office",t:"Reminder from the school office. Year 12 trip forms are due this Friday. Details are on the school website.",a:"real",w:"Expected, specific and no link to log in. It points you to a place you already know."},
-{c:"Discord",f:"a server member",t:"you got gifted 3 months of Nitro!! claim it before it expires disc0rd-gift.com",a:"scam",w:"Free stuff plus a rush. Look at the domain, it has a zero where the o should be."},
-{c:"Text",f:"Bank",t:"Your one-time code is 482913. Never share this code with anyone, including the bank.",a:"real",w:"Real only if you just tried to log in. It has no link and it tells you not to share it. If you didn’t request it, someone else is trying to get in."},
+{c:"Text",f:"School Office",t:"Reminder from the school office. Year 12 trip forms are due this Friday. Details are on the school website.",a:"real",w:"Expected, specific and no login link. It points you to a place you already know."},
+{c:"Discord",f:"a server member",t:"you got gifted 3 months of Nitro!! claim it before it expires disc0rd-gift.com",a:"scam",w:"Free stuff plus a rush. The domain has a zero where the o should be."},
+{c:"Text",f:"Bank",t:"Your one-time code is 482913. Never share this code with anyone, including the bank.",a:"real",w:"Real if you just tried to log in. No link, and it tells you not to share it. If you didn’t ask for it, someone else is trying to get in."},
 {c:"Email",f:"Inland Revenue",t:"You have a tax refund of $412.60. Confirm your bank details within 48 hours to receive it.",a:"scam",w:"Free money with a deadline. Real agencies don’t chase you for bank details with a clock ticking."},
 {c:"Gaming DM",f:"xX_trader_Xx",t:"selling my maxed account for $20. send the money first and i’ll give you the login right after",a:"scam",w:"Paying first with nothing to protect you is the oldest trick. Once the money is gone, so is the seller."},
-{c:"Text",f:"Phone provider",t:"Your bill is ready. View it in the app or on our website whenever you like.",a:"real",w:"Calm, no link and no threat. It sends you to the app you already have."}
+{c:"Text",f:"Phone provider",t:"Your bill is ready. View it in the app or on our website whenever you like.",a:"real",w:"Calm, no link and no threat. It sends you to the app you already have."},
+{c:"Text",f:"Unknown number",t:"Hi Mum, I dropped my phone in the sea. This is my new number. Can you pay a bill for me? It’s urgent.",a:"scam",w:"A new number, a story and money, all with a rush. Call your family member on their old number first."},
+{c:"Email",f:"Netflix",t:"Your payment failed. Update your billing details within 12 hours to keep watching: netflix-billing-help.com",a:"scam",w:"A deadline and a look-alike address. Open the real app to check your billing."},
+{c:"Email",f:"Spotify",t:"Your receipt is ready. Premium renewed today. You can manage your plan in the Spotify app.",a:"real",w:"It states what happened and sends you to the app, not a link that asks you to sign in."},
+{c:"Text",f:"Dentist",t:"Reminder: your appointment is tomorrow at 3:30pm. Call us on the number on our website if you need to change it.",a:"real",w:"Specific, expected and calm. It tells you to use the number you already know."},
+{c:"TikTok",f:"Brand Deals",t:"we love your account! earn $500 a week promoting our product. message us on telegram to start",a:"scam",w:"An offer out of nowhere that moves you to another app. Real brands email from a company address."}
 ];
+var COL={Text:"#3dff9a",Snapchat:"#ffd23f",Instagram:"#ff3d9a",Discord:"#9a9dff",Email:"#27e1ff","Gaming DM":"#c77dff",TikTok:"#ff7ab8"};
 var $=function(i){return document.getElementById(i)};
-var API="https://projectspace.nz/xbbhjgpp/digiwise/";
-var q,i,score,streak,best,done=0,who={name:"",form:""};
+var API="https://projectspace.nz/xbbhjgpp/digiwise/",GAME="real-or-scam",lane=$("lane");
+var bons,bon,Q,sp,done,ok,combo,bestCombo,lives,charge,slow,cards,miss,run,last,lastSp,pts,who={name:"",form:""};
+
+function nm(s){return s.trim().replace(/\s+/g," ").toLowerCase().replace(/(^|[ '-])([a-z\u00e0-\u024f])/g,function(m,a,b){return a+b.toUpperCase()})}
+function dk(){return "dw_done:"+GAME+":"+who.name.toLowerCase()+"|"+who.form}
+function rec(){try{return JSON.parse(localStorage.getItem(dk())||"null")}catch(e){return null}}
+function setRec(o){try{localStorage.setItem(dk(),JSON.stringify(o))}catch(e){}}
+function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}
+function show(id){["intro","play","end"].forEach(function(s){$(s).hidden=s!==id});document.body.classList.toggle("playing",id==="play");window.scrollTo(0,0)}
+function mk(m){
+ var d=document.createElement("div"),c=document.createElement("span"),b=document.createElement("b"),p=document.createElement("p");
+ d.className="card in";d.style.setProperty("--c",COL[m.c]||"#fff");c.className="ch";c.textContent=m.c;b.textContent=m.f;p.textContent=m.t;
+ d.appendChild(c);d.appendChild(b);d.appendChild(p);return d;
+}
+function hud(){
+ var h="";for(var k=0;k<3;k++)h+=k<lives?"♥":"<span class=x>♥</span>";
+ $("hp").innerHTML=h;
+ $("strk").textContent=combo>1?"STREAK "+combo:"";$("strk").className=combo>=3?"fire":"";
+ $("wv").textContent="WAVE "+Math.min(3,Math.floor(done/5)+1);
+ $("bar").style.width=(done/Q.length*100)+"%";
+ $("bSlow").disabled=!charge||slow>0;
+ $("chg").textContent=charge?"x"+charge+" ready":"3 in a row";
+}
+function banner(t){var w=$("wave");w.textContent=t;w.classList.remove("on");void w.offsetWidth;w.classList.add("on")}
+function burst(y,col){
+ for(var k=0;k<12;k++){
+  var d=document.createElement("i"),a=Math.random()*6.28,r=40+Math.random()*60;
+  d.className="dot";d.style.cssText="left:50%;top:"+y+"px;background:"+(k%3?col:"#fff")+";--dx:"+Math.cos(a)*r+"px;--dy:"+Math.sin(a)*r+"px";
+  lane.appendChild(d);setTimeout(function(e){return function(){e.remove()}}(d),650);
+ }
+}
+function start(){
+ Q=shuffle(S);sp=0;done=0;ok=0;combo=0;bestCombo=0;lives=3;charge=0;slow=0;cards=[];miss=[];lastSp=0;bons=[];bon={};
+ lane.innerHTML='<div id="wave"></div>';lane.classList.remove("slow");
+ $("fb").className="";$("fb").innerHTML="<p>Decide on the glowing message before it hits the red line.</p>";
+ hud();show("play");run=false;["3","2","1","GO!"].forEach(function(t,k){setTimeout(function(){banner(t);if(k===3){run=true;last=performance.now();requestAnimationFrame(tick)}},k*700)});
+}
+function tick(t){
+ if(!run)return;
+ var dt=Math.min((t-last)/1000,.05),H=lane.clientHeight,k;
+ last=t;
+ if(slow>0){slow-=dt;if(slow<=0){slow=0;lane.classList.remove("slow");hud()}}
+ var sd=(52+done*4.5)*(slow>0?.3:1)*Math.max(.8,Math.min(2.4,H/440));
+ for(k=0;k<cards.length;k++)cards[k].y+=sd*dt;
+ var top=cards[cards.length-1];
+ if(sp<Q.length&&((top&&top.y>=26)||(!top&&t-lastSp>600))){
+  var el=mk(Q[sp]);lane.appendChild(el);lastSp=t;
+  cards.push({el:el,m:Q[sp],y:-el.offsetHeight-2,h:el.offsetHeight});sp++;
+ }
+ if((done===4||done===9)&&!bon[done]){bon[done]=1;var be=document.createElement("div"),bo={el:be,y:-50};be.className="card bonus";be.style.left=(8+Math.random()*30)+"%";be.style.right=(8+Math.random()*30)+"%";be.textContent="★ SHIELD tap me";lane.appendChild(be);bons.push(bo);be.onclick=function(){grab(bo)}}
+ for(k=bons.length-1;k>=0;k--){bons[k].y+=sd*dt;bons[k].el.style.transform="translateY("+bons[k].y+"px)";if(bons[k].y>H){bons[k].el.remove();bons.splice(k,1)}}
+ for(k=0;k<cards.length;k++){var cc=cards[k];cc.el.style.transform="translateY("+cc.y+"px)";cc.el.style.rotate=Math.sin(t/380+k*2)*(lane.clientWidth>600?.45:1.3)+"deg";cc.el.classList.toggle("on",k===0);cc.el.classList.toggle("hot",k===0&&cc.y+cc.h>H*.7)}
+ if(cards.length&&cards[0].y+cards[0].h>=H-30)resolve("late");
+ if(run)requestAnimationFrame(tick);
+}
+function resolve(ch){
+ if(!run||!cards.length)return;
+ var c=cards.shift(),m=c.m,good=ch===m.a,y=Math.max(30,c.y+c.h/2);
+ if(good){ok++;combo++;bestCombo=Math.max(bestCombo,combo);if(combo%3===0&&charge<2)charge++;burst(y,COL[m.c]);pop(y,combo>=8?"UNSTOPPABLE":combo>=5?"ON FIRE":combo>=3?"NICE x"+combo:"+1")}
+ else{combo=0;lives--;miss.push(m);lane.classList.remove("hit");void lane.offsetWidth;lane.classList.add("hit");var fl=$("flash");fl.classList.remove("on");void fl.offsetWidth;fl.classList.add("on")}
+ done++;
+ c.el.dataset.s=m.a==="scam"?"SCAM":"REAL";c.el.style.setProperty("--sc",m.a==="scam"?"#ff4d5e":"#3dff9a");c.el.style.rotate="0deg";
+ c.el.className="card gone "+(ch==="scam"?"l":ch==="real"?"r":"d");
+ setTimeout(function(){c.el.remove()},600);
+ var fb=$("fb"),b=document.createElement("b"),p=document.createElement("p");
+ fb.className=good?"ok":"no";fb.innerHTML="";
+ b.textContent=(good?"Correct. ":ch==="late"?"Too slow. ":"Not quite. ")+m.f+" was "+(m.a==="scam"?"a scam.":"real.");
+ p.textContent=m.w;fb.appendChild(b);fb.appendChild(p);
+ hud();
+ if(lives<=0||done>=Q.length){run=false;setTimeout(finish,700)}
+ else if(done%5===0)banner("WAVE "+(done/5+1));
+}
+function pop(y,t){var d=document.createElement("div");d.className="pop";d.textContent=t;d.style.top=Math.max(10,y-20)+"px";lane.appendChild(d);setTimeout(function(){d.remove()},950)}
+function grab(bo){var i=bons.indexOf(bo);if(i<0)return;bons.splice(i,1);bo.el.remove();var y=bo.y+20;if(lives<3){lives++;pop(y,"+1 LIFE")}else if(charge<2){charge++;pop(y,"+SLOW TIME")}else pop(y,"+BONUS");burst(y,"#ffd23f");hud()}
+function useSlow(){if(!run||!charge||slow>0)return;charge--;slow=5;lane.classList.add("slow");hud()}
+function finish(){
+ pts=Math.round(ok/Q.length*100);
+ show("end");var n=0,iv=setInterval(function(){n+=Math.max(1,Math.ceil((pts-n)/8));if(n>=pts){n=pts;clearInterval(iv)}$("final").textContent=n},35);
+ $("sRight").textContent=ok;$("sStrk").textContent=bestCombo;$("sLife").textContent=lives;
+ $("rating").textContent=pts===100?"Nothing got through.":lives<=0?"Your inbox got overrun. Check what got through.":pts>=80?"Sharp eyes. A few tricky ones got close.":pts>=50?"Decent, but scammers count on the rest.":"Good thing you played. Read what you missed.";
+ $("rating").textContent=(pts===100?"Scam Slayer":pts>=80?"Sharp Eye":pts>=50?"Rookie":"Fresh Target")+". "+$("rating").textContent;
+ var box=$("missed");box.innerHTML="";
+ var h=document.createElement("h2");
+ if(!miss.length){h.textContent="No misses";box.appendChild(h)}
+ else{
+  h.textContent="What you missed";box.appendChild(h);
+  var ul=document.createElement("ul");ul.className="miss";
+  miss.forEach(function(m){var li=document.createElement("li"),b=document.createElement("b"),s=document.createElement("span");b.textContent=m.f+" was "+(m.a==="scam"?"a scam":"real");s.textContent=m.w;li.appendChild(b);li.appendChild(s);ul.appendChild(li)});
+  box.appendChild(ul);
+ }
+ setRec({pts:pts,saved:false});save();
+}
+function total(){
+ var t=$("tot");t.textContent="";
+ fetch(API+"scores.php").then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(function(d){
+  var me=(d.rows||[]).filter(function(r){return String(r.name).toLowerCase()===who.name.toLowerCase()&&String(r.form).toUpperCase()===who.form})[0];
+  if(me)t.textContent="Your total across all Digiwise games: "+me.total+" points.";
+ }).catch(function(e){console.error("Total failed",e)});
+}
 function save(){
  var st=$("saved"),rt=$("retry");st.textContent="Saving your score.";rt.hidden=true;
- fetch(API+"submit.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:who.name,form:who.form,game:"real-or-scam",points:score*10})})
+ fetch(API+"submit.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:who.name,form:who.form,game:GAME,points:pts})})
  .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d}})})
- .then(function(x){if(x.ok){st.textContent="Score saved. Your best score this term is the one that counts."}else{st.textContent=(x.d&&x.d.error)||"Couldn’t save your score.";rt.hidden=false}})
+ .then(function(x){
+  if(x.ok){setRec({pts:pts,saved:true});st.textContent="Score saved and added to your total. Play the other Digiwise games with the same name and form class to add more.";total()}
+  else{st.textContent=(x.d&&x.d.error)||"Couldn’t save your score.";rt.hidden=false}
+ })
  .catch(function(e){console.error("Save failed",e);st.textContent="Couldn’t reach the leaderboard. Check your connection and try again.";rt.hidden=false});
 }
-
-function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t}return a}
-
-function start(){q=shuffle(S);i=0;score=0;streak=0;done=0;$("end").hidden=true;$("game").hidden=false;show()}
-
-function show(){
- var m=q[i];
- $("count").textContent=(i+1)+" of "+q.length;
- $("fill").style.width=(i/q.length*100)+"%";
- $("chan").textContent=m.c;$("when").textContent="from "+m.f;
- $("from").textContent=m.f;$("text").textContent=m.t;var mb=document.querySelector(".msg");mb.style.animation="none";void mb.offsetWidth;mb.style.animation="";
- $("stat").textContent=score+" right"+(streak>1?" · streak "+streak:"");
- $("bReal").disabled=false;$("bScam").disabled=false;$("fb").hidden=true;
-}
-
-function answer(g){
- var m=q[i],ok=g===m.a;
- if(ok){score++;streak++}else{streak=0}
- $("bReal").disabled=true;$("bScam").disabled=true;
- var fb=$("fb");fb.className="fb "+(ok?"ok":"no");
- $("verdict").textContent=(ok?"Correct. ":"Not quite. ")+"This one is "+(m.a==="scam"?"a scam.":"real.");
- $("why").textContent=m.w;
- $("next").textContent=i===q.length-1?"See my score":"Next message";
- $("stat").textContent=score+" right"+(streak>1?" · streak "+streak:"");
- fb.hidden=false;$("next").focus();
-}
-
-function finish(){
- $("game").hidden=true;$("end").hidden=false;
- $("final").textContent=score+"/"+q.length;
- var r=score===10?"Nothing gets past you.":score>=8?"Sharp eyes. A few tricky ones got close.":score>=5?"Decent, but scammers are counting on the rest.":"Good thing you played. Read the tips below.";
- $("rating").textContent=r;done=1;save();
- try{best=Math.max(+localStorage.getItem("ros_best")||0,score);localStorage.setItem("ros_best",best)}catch(e){}
-}
-
-$("bReal").onclick=function(){answer("real")};
-$("bScam").onclick=function(){answer("scam")};
-$("next").onclick=function(){i++;if(i>=q.length){finish()}else{show()}};
-$("again").onclick=start;
-var ls=0,LN=4;
-function lessonShow(){
- var st=document.querySelectorAll("#lesson .step");
- for(var k=0;k<st.length;k++)st[k].hidden=(k!==ls);
- $("lstep").textContent="Step "+(ls+1)+" of "+LN;
- $("lfill").style.width=((ls+1)/LN*100)+"%";
- $("lback").hidden=ls===0;
- $("lnext").textContent=ls===LN-1?"Start playing":"Next";
- window.scrollTo(0,0);
-}
-$("lnext").onclick=function(){
- if(ls<LN-1){ls++;lessonShow();return}
- var n=$("nick").value.trim().replace(/\s+/g," "),f=$("form").value.trim().toUpperCase(),e=$("lerr");
+var sx=null;
+lane.addEventListener("pointerdown",function(e){sx=e.clientX});
+lane.addEventListener("pointerup",function(e){if(sx===null)return;var dx=e.clientX-sx;sx=null;if(Math.abs(dx)>50)resolve(dx<0?"scam":"real")});
+$("bBlock").onclick=function(){resolve("scam")};
+$("bKeep").onclick=function(){resolve("real")};
+$("bSlow").onclick=useSlow;
+document.addEventListener("keydown",function(e){
+ if($("play").hidden)return;
+ if(e.key==="ArrowLeft"||e.key==="a"){e.preventDefault();resolve("scam")}
+ else if(e.key==="ArrowRight"||e.key==="d"){e.preventDefault();resolve("real")}
+ else if(e.key===" "){e.preventDefault();useSlow()}
+});
+document.addEventListener("visibilitychange",function(){if(!document.hidden)last=performance.now()});
+$("go").onclick=function(){
+ var n=$("nick").value.trim().replace(/\s+/g," "),f=$("form").value.trim().toUpperCase(),e=$("err");
  if(!/^[A-Za-z\u00C0-\u024F' -]{2,20}$/.test(n)){e.textContent="Enter your first name.";return}
  if(!/^[A-Z0-9]{2,6}$/.test(f)){e.textContent="Enter your form class.";return}
- e.textContent="";who={name:n,form:f};
+ n=nm(n);who={name:n,form:f};var rc=rec();
+ if(rc){
+  if(rc.pts!=null&&!rc.saved){e.textContent="";pts=rc.pts;show("end");$("final").textContent=pts;$("rating").textContent="Your score hasn’t been saved yet.";$("missed").innerHTML="";save();return}
+  e.textContent=rc.pts!=null?"You’ve already played this game as "+n+" "+f+" and scored "+rc.pts+". Each student gets one attempt.":"You’ve already started this game as "+n+" "+f+". Each student gets one attempt.";return}
+ e.textContent="";
  try{localStorage.setItem("dw_who",JSON.stringify(who))}catch(x){}
- $("lesson").hidden=true;start()
+ setRec({pts:null,saved:false});start();
 };
 $("retry").onclick=save;
 try{var sv=JSON.parse(localStorage.getItem("dw_who")||"null");if(sv){$("nick").value=sv.name||"";$("form").value=sv.form||""}}catch(x){}
-$("lback").onclick=function(){if(ls>0){ls--;lessonShow()}};
-function toLesson(){$("game").hidden=true;$("end").hidden=true;$("lesson").hidden=false;ls=0;lessonShow()}
-$("toLesson").onclick=toLesson;$("toLesson2").onclick=toLesson;
-lessonShow();
 </script>
 </body>
 </html>

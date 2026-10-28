@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff2cc">
+<title>Fact or fake | Digiwise</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@600;700;800&display=swap">
+<style>
+:root{--bg:#fff2cc;--ink:#1d2b3a;--org:#ff6b35;--teal:#00a8a8;--grn:#3fa34d;--red:#e63946;--yel:#ffc93c;--card:#fffdf5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--ink);font:700 1rem/1.4 Nunito,system-ui,sans-serif;background:repeating-linear-gradient(135deg,#fff2cc 0 28px,#ffeab0 28px 56px)}
+main{max-width:860px;margin:0 auto;padding:14px 14px 30px}
+h1,h2,.rus{font-family:"Russo One",Impact,sans-serif;font-weight:400;margin:0;line-height:1.05}
+h1{font-size:clamp(2rem,6vw,2.7rem);color:var(--org);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+h2{font-size:1.1rem;margin-bottom:8px}
+p{margin:0 0 10px}.soft{color:#4d5f73;font-weight:600}
+button,input{font:inherit}
+button{cursor:pointer;border:3px solid var(--ink);border-radius:12px;padding:12px 18px;font-family:"Russo One",sans-serif;color:var(--ink);background:var(--yel);box-shadow:0 4px 0 var(--ink);touch-action:manipulation;user-select:none;-webkit-user-select:none}
+button:active{transform:translateY(3px);box-shadow:none}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+a{color:var(--teal);font-weight:800}
+.panel{background:var(--card);border:3px solid var(--ink);border-radius:16px;padding:12px 15px;margin-bottom:12px;box-shadow:5px 5px 0 var(--ink)}
+.cols{display:grid;gap:0 16px}
+@media (min-width:640px){.cols{grid-template-columns:1fr 1fr;align-items:start}}
+.checks{list-style:none;padding:0;margin:0;counter-reset:c}
+.checks li{counter-increment:c;display:grid;grid-template-columns:2rem 1fr;gap:6px;padding:6px 0}
+.checks li::before{content:counter(c);display:grid;place-items:center;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--teal);color:#fff;font:.95rem "Russo One"}
+label{display:block;margin:8px 0 4px}
+input{width:100%;padding:10px;border-radius:10px;border:3px solid var(--ink);background:#fff}
+.err{color:var(--red);min-height:1.3em;margin:6px 0 0}
+.wide{width:100%;margin-top:8px;font-size:1.1rem}
+[hidden]{display:none!important}
+
+body.playing{background:#12261a;overflow:hidden}
+body.playing h1,body.playing .sub,body.playing .foot{display:none}
+body.playing main{max-width:none;padding:0;min-height:100dvh;display:flex;align-items:center;justify-content:center}
+body.playing #play{width:100%}
+#rot{display:none;margin:0;padding:4px;text-align:center;color:#fff;font-size:.85rem}
+@media (orientation:portrait){body.playing #rot{display:block}}
+.stage{position:relative;container-type:inline-size;width:100vw;height:100dvh;max-height:calc(100vw/1.5);margin:0 auto;overflow:hidden;background:#3fa34d}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.pnl{position:absolute;top:0;bottom:0;width:23.4cqw;padding:1.4cqw;display:flex;flex-direction:column;gap:1cqw;pointer-events:none;font-family:"Russo One",sans-serif}
+.pl{left:0}.pr{right:0}
+.pnl .card,.pnl span.card{background:var(--card);border:.3cqw solid var(--ink);border-radius:1.2cqw;box-shadow:.35cqw .35cqw 0 var(--ink)}
+#claim{padding:.8cqw 1cqw;font:800 1.75cqw/1.25 Nunito,sans-serif}
+#claim small{display:block;font:1.15cqw "Russo One",sans-serif;color:var(--org);margin-bottom:.3cqw}
+#claim.new{animation:flip .4s}
+#fb{flex:1;min-height:0;overflow:hidden;padding:.7cqw 1cqw;font:700 1.3cqw/1.25 Nunito,sans-serif}
+#fb b{display:block;font:1.4cqw "Russo One",sans-serif;margin-bottom:.2cqw}#fb.ok b{color:var(--grn)}#fb.no b{color:var(--red)}
+#fb p{margin:0;color:#4d5f73;font-weight:600}
+.ctl{display:flex;gap:1cqw}
+.pb{pointer-events:auto;padding:0;height:7.4cqw;border-width:.3cqw;border-radius:1.2cqw;box-shadow:0 .4cqw 0 var(--ink);font-size:2.6cqw}
+.pb:active{transform:translateY(.3cqw)}
+.ctl .pb{flex:1}
+.pills{display:grid;gap:.8cqw}
+.pills span{font-size:1.55cqw;line-height:1.2;padding:.5cqw 1cqw}
+#pos{background:var(--yel)!important}
+.trk{position:relative;flex:1;min-height:0;width:3.2cqw;margin:.6cqw auto 0;border-radius:1.6cqw;background:var(--card);border:.3cqw solid var(--ink)}
+.trk::after{content:"";position:absolute;left:-.3cqw;right:-.3cqw;top:-.3cqw;height:1.4cqw;border-radius:1.6cqw 1.6cqw 0 0;background:repeating-linear-gradient(45deg,#1d2b3a 0 .4cqw,#fff .4cqw .8cqw)}
+.trk i{position:absolute;left:50%;bottom:0;width:1.5cqw;height:1.5cqw;margin:0 0 -.75cqw -.75cqw;border-radius:50%;border:.25cqw solid var(--ink)}
+.trk i:last-child{width:2.2cqw;height:2.2cqw;margin:0 0 -1.1cqw -1.1cqw;z-index:2}
+.bst{width:100%;font-size:2.1cqw;background:var(--org);color:#fff;text-shadow:.15cqw .15cqw 0 var(--ink)}
+.bst:disabled{filter:grayscale(.8);opacity:.6}
+.big{font:5rem/1 "Russo One",sans-serif;color:var(--org);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink)}
+.big small{font-size:1.3rem;-webkit-text-stroke:0;text-shadow:none;color:var(--ink)}
+.stats{display:flex;gap:8px;margin:8px 0 12px}.stats div{flex:1;background:var(--card);border:3px solid var(--ink);border-radius:12px;padding:6px;text-align:center;font:.75rem "Russo One",sans-serif}.stats b{display:block;font-size:1.25rem;color:var(--teal)}
+.miss{list-style:none;padding:0;margin:0}.miss li{padding:7px 0;border-bottom:2px dashed #c9b88a}.miss li:last-child{border:0}
+.miss span{display:block;font-weight:600;color:#4d5f73}
+.foot{font-size:.85rem;font-weight:600;color:#4d5f73;margin-top:18px}
+@media (max-height:480px){body.ended h1,body.ended .sub,body.ended .foot{display:none}body.ended main{padding-top:8px}.big{font-size:3.4rem}.stats{margin:4px 0 8px}.wide{margin-top:6px;padding:9px 14px}#missed{max-height:calc(100dvh - 24px);overflow:auto;margin:0}.panel{padding:10px 12px;margin-bottom:8px}}
+@keyframes flip{from{transform:rotateX(80deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>Fact or fake</h1>
+<p class="soft sub" style="margin-top:10px">Race down the track. Read each claim about tech and AI, then drive through the right gate.</p>
+
+<section id="intro">
+ <div class="cols">
+  <div>
+   <div class="panel">
+    <h2>Three checks before you trust it</h2>
+    <ol class="checks">
+     <li><span><b>Where did it come from?</b> Find the original account or site, not just a screenshot.</span></li>
+     <li><span><b>Can you check it another way?</b> Search it, or call the person back on a number you already know.</span></li>
+     <li><span><b>Is it rushing you?</b> Pressure plus money or logins is a warning sign.</span></li>
+    </ol>
+   </div>
+   <div class="panel">
+    <h2>How to race</h2>
+    <p style="margin:0">10 claims, 10 gates. The left half of each gate is <b style="color:var(--grn)">FACT</b>, the right half is <b style="color:var(--red)">FAKE</b>. Steer left and right with the arrow keys or the ◄ ► buttons, or drag on the track. Right answers charge a boost: press space or Boost. Dodge rivals, grab yellow pads, and a wrong gate spins you out.</p>
+    <button id="snd" type="button" style="margin-top:6px;padding:8px 14px;font-size:.9rem">Sound: off</button>
+   </div>
+  </div>
+  <div class="panel">
+   <p style="margin:0">You get one attempt at this game. Use exactly the same first name and form class in every Digiwise game, so your scores add up on the leaderboard. Play with your phone sideways.</p>
+   <label for="nick">First name</label><input id="nick" maxlength="20" autocomplete="given-name">
+   <label for="form">Form class</label><input id="form" maxlength="6" autocomplete="off">
+   <p class="err" id="err" role="alert"></p>
+   <button class="wide" id="go">Start engines</button>
+  </div>
+ </div>
+</section>
+
+<section id="play" hidden>
+ <p id="rot">Turn your phone sideways for the best view.</p>
+ <div class="stage">
+  <canvas id="cv" width="800" height="400" aria-label="Race track"></canvas>
+  <div class="pnl pl">
+   <div class="card" id="claim" aria-live="polite"></div>
+   <div class="card" id="fb" aria-live="polite"><p>Left half of the gate is FACT. Right half is FAKE. Drive through the half that matches the claim.</p></div>
+   <div class="ctl"><button class="pb" id="bL" aria-label="Steer left">◄</button><button class="pb" id="bR" aria-label="Steer right">►</button></div>
+  </div>
+  <div class="pnl pr">
+   <div class="pills"><span class="card" id="pos">You: P8/8</span><span class="card" id="spd">0 km/h</span><span class="card" id="stk">Streak 0</span></div>
+   <div class="trk" id="trk" aria-hidden="true"></div>
+   <button class="pb bst" id="bB" disabled>Boost</button>
+  </div>
+ </div>
+</section>
+
+<section id="end" hidden>
+ <div class="cols">
+  <div>
+   <div class="big"><span id="final"></span><small>/100</small></div>
+   <h2 id="rating" style="margin-top:8px"></h2>
+   <div class="stats"><div><b id="sRight"></b>gates right</div><div><b id="sPos"></b>finish</div><div><b id="sTime"></b>time</div></div>
+   <p id="saved" aria-live="polite" style="margin-bottom:4px"></p>
+   <p id="tot" class="soft"></p>
+   <button class="wide" id="retry" hidden style="background:#fff">Try saving again</button>
+   <p class="soft" style="margin-top:10px">Play the other Digiwise games with the same name and form class so your points add up.</p>
+   <p style="text-align:center;margin-top:12px"><a href="index.html">Back to Digiwise</a></p>
+  </div>
+  <div class="panel" id="missed"></div>
+ </div>
+</section>
+<p class="foot">Made for Digiwise. Your first name, form class and score are saved so the school leaderboard works.</p>
+</main>
+
+<script>
+var S=[
+{t:"An AI chatbot always tells the truth, because it checks every answer against a database.",a:"fake",w:"Chatbots predict likely words. They can sound sure and still be wrong, so check anything important."},
+{t:"AI can copy someone’s voice from a short clip, so a call from a “family member” asking for money could be fake.",a:"fact",w:"Voice cloning is real. Hang up and call them back on a number you already have, or agree a family code word."},
+{t:"Deepfake videos can show real people saying things they never said.",a:"fact",w:"Check where the clip came from and whether trusted sources report it. Odd blinking or lips that don’t match are clues."},
+{t:"Incognito mode hides everything you do from your school, your employer and the websites you visit.",a:"fake",w:"It only stops your own browser saving history on that device. Networks and websites can still see you."},
+{t:"A padlock in the address bar means a website is safe to trust.",a:"fake",w:"It means the connection is encrypted. Scam sites can have a padlock too, so read the address."},
+{t:"Two-factor sign-in makes it much harder for someone to get into your account, even if they know your password.",a:"fact",w:"They would also need your phone or app code. Turn it on for your important accounts."},
+{t:"AI image tools can get hands, text and reflections wrong, which can give a fake picture away.",a:"fact",w:"They are useful clues but the tools keep improving, so also check where the image came from."},
+{t:"Deleting a photo from a group chat means it is gone from everyone’s phone for good.",a:"fake",w:"Others may have saved it or taken a screenshot. Think before you send."},
+{t:"A password manager can create and remember a different strong password for every account.",a:"fact",w:"One unique password per account means a leak in one place can’t unlock the rest."},
+{t:"AI detector tools can tell with 100% certainty whether a person or an AI wrote something.",a:"fake",w:"They are unreliable and often flag real human work. Don’t treat their result as proof."}
+];
+var $=function(i){return document.getElementById(i)};
+var API="https://projectspace.nz/xbbhjgpp/digiwise/",GAME="fact-or-fake";
+var W=800,H=400,RL=190,RR=610,NL=8,LW=(RR-RL)/NL,CX=400,PY=315,N=S.length,cv=$("cv"),g=cv.getContext("2d");
+var dots,lastCn,AC=null,snd=false,Q,dist,x,vx,v,boost,charge,spin,slow,shake,cool,gi,ok,streak,best,miss,txts,parts,cd,t,run,last,rivals,pads,keyL,keyR,drag=null,lastPos,pts,fin,finPos,who={name:"",form:""};
+var VG;function mkVG(){var r=g.createRadialGradient(W/2,H/2,H*.4,W/2,H/2,W*.62);r.addColorStop(0,"rgba(0,0,0,0)");r.addColorStop(1,"rgba(10,20,30,.4)");VG=r}mkVG();
+var COLS=["#00a8a8","#ff4fa3","#6a4fe0","#f4f4f4","#2d9cdb","#8bc34a","#b388ff"];
+function gd(i){return 1200+i*1150}
+var FIN=gd(N-1)+900;
+function tone(f,d,ty,vol,f2){
+ if(!snd||!AC)return;var o=AC.createOscillator(),gn=AC.createGain(),n=AC.currentTime;
+ o.type=ty||"sine";o.frequency.setValueAtTime(f,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2,n+d);
+ gn.gain.setValueAtTime(vol||.08,n);gn.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(gn);gn.connect(AC.destination);o.start();o.stop(n+d);
+}
+function toggleSnd(){snd=!snd;if(snd&&!AC)AC=new (window.AudioContext||window.webkitAudioContext)();$("snd").textContent="Sound: "+(snd?"on":"off");tone(660,.1)}
+function nm(s){return s.trim().replace(/\s+/g," ").toLowerCase().replace(/(^|[ '-])([a-z\u00e0-\u024f])/g,function(m,a,b){return a+b.toUpperCase()})}
+function dk(){return "dw_done:"+GAME+":"+who.name.toLowerCase()+"|"+who.form}
+function rec(){try{return JSON.parse(localStorage.getItem(dk())||"null")}catch(e){return null}}
+function setRec(o){try{localStorage.setItem(dk(),JSON.stringify(o))}catch(e){}}
+function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),q=a[k];a[k]=a[j];a[j]=q}return a}
+function show(id){["intro","play","end"].forEach(function(s){$(s).hidden=s!==id});document.body.classList.toggle("ended",id==="end");document.body.classList.toggle("playing",id==="play");window.scrollTo(0,0)}
+function clamp(a,lo,hi){return Math.max(lo,Math.min(hi,a))}
+function fr(n){var s=Math.sin(n*12.9898)*43758.5453;return s-Math.floor(s)}
+function layout(){
+ var st=document.querySelector(".stage"),cw=st.clientWidth,ch=st.clientHeight;if(!cw||!ch)return;
+ var d=Math.min(window.devicePixelRatio||1,2,Math.sqrt(2600000/(cw*ch))),oL=RL,oR=RR;
+ W=cw/ch*H;RL=Math.round(W*.234);RR=Math.round(W*.766);LW=(RR-RL)/NL;CX=(RL+RR)/2;
+ cv.width=Math.round(cw*d);cv.height=Math.round(ch*d);g.setTransform(cv.height/H,0,0,cv.height/H,0,0);mkVG();
+ if(typeof x==="number"&&rivals){var f=(RR-RL)/(oR-oL),m=function(a){return RL+(a-oL)*f};x=m(x);rivals.forEach(function(r){r.x=m(r.x);r.tx=m(r.tx)});pads.forEach(function(q){q.x=m(q.x)})}
+}
+function wy(d){return PY-(d-dist)}
+function lx(i){return RL+(i+.5)*LW}
+
+function claim(){
+ var c=$("claim");c.innerHTML="";c.classList.remove("new");void c.offsetWidth;c.classList.add("new");
+ var sm=document.createElement("small"),p=document.createElement("div");
+ sm.textContent="Claim "+Math.min(gi+1,N)+" of "+N;p.textContent=gi<N?Q[gi].t:"Head for the finish line!";
+ c.appendChild(sm);c.appendChild(p);
+}
+function hud(){
+ var pos=1;rivals.forEach(function(r){if(r.d>dist)pos++});
+ if(pos!==lastPos){lastPos=pos;$("pos").textContent="You: P"+pos+"/8"}
+ $("stk").textContent="Streak "+streak;$("spd").textContent=Math.round(v*.45)+" km/h";
+ rivals.forEach(function(r,i){dots[i].style.bottom=clamp(r.d/FIN,0,1)*100+"%"});dots[7].style.bottom=clamp(dist/FIN,0,1)*100+"%";
+ $("bB").textContent=charge?"Boost x"+charge:"Boost";$("bB").disabled=!charge||!run;
+}
+function reset(){
+ Q=shuffle(S);dist=0;x=CX;vx=0;v=0;boost=0;charge=0;spin=0;slow=0;shake=0;cool=0;gi=0;ok=0;streak=0;best=0;miss=[];txts=[];parts=[];cd=3.4;t=0;lastPos=0;keyL=keyR=false;fin=false;
+ var ds=[440,330,250,170,80,-70,-170],ls=[2,5,0,7,3,6,1];
+ rivals=ds.map(function(d,i){return{d:d,x:lx(ls[i]),tx:lx(ls[i]),k:.75+Math.random()*.2,col:COLS[i],tk:1+Math.random()*2,ch:-1}});
+ pads=[{d:700,x:CX,u:0}];for(var i=0;i<N;i++)pads.push({d:gd(i)+520+Math.random()*250,x:RL+40+Math.random()*(RR-RL-80),u:0});
+ $("fb").className="card";$("fb").innerHTML="<p>Left half of the gate is FACT. Right half is FAKE. Drive through the half that matches the claim.</p>";
+ lastCn=9;var tk=$("trk");tk.innerHTML="";dots=[];
+ for(var q=0;q<8;q++){var di=document.createElement("i");di.style.background=q<7?COLS[q]:"#ff6b35";tk.appendChild(di);dots.push(di)}
+ claim();hud();
+}
+function start(){show("play");layout();reset();run=true;last=performance.now();requestAnimationFrame(loop)}
+function pop(s,c){txts.push({x:x,y:PY-78,t:1,s:s,c:c})}
+function burst(bx,by,col,n,sp){for(var q=0;q<n;q++){var a=Math.random()*6.28,r=sp*(.4+Math.random());parts.push({x:bx,y:by,vx:Math.cos(a)*r,vy:Math.sin(a)*r-40,t:.5+Math.random()*.4,c:col,r:2+Math.random()*3})}}
+function useBoost(){if(!run||cd>0||!charge||boost>.3)return;charge--;boost=2;tone(300,.4,"sawtooth",.06,900);pop("BOOST!","#ff6b35")}
+
+function gate(){
+ var c=Q[gi],side=x<CX?"fact":"fake",good=side===c.a,fb=$("fb"),b=document.createElement("b"),p=document.createElement("p");
+ if(good){tone(620,.12);setTimeout(function(){tone(930,.16)},110);ok++;streak++;best=Math.max(best,streak);if(charge<3)charge++;boost=Math.max(boost,1);pop(streak>2?"STREAK "+streak:"+1","#3fa34d");burst(x,PY,"#3fd96a",22,180);burst(x,PY,"#ffc93c",14,150)}
+ else{tone(170,.45,"sawtooth",.1,60);streak=0;spin=1;shake=.5;miss.push(c);pop("SPIN OUT","#e63946");burst(x,PY,"#9aa3ab",18,110)}
+ fb.className="card "+(good?"ok":"no");fb.innerHTML="";
+ b.textContent=(good?"Correct. ":"Wrong gate. ")+"That claim is "+(c.a==="fact"?"a fact.":"fake.");p.textContent=c.w;fb.appendChild(b);fb.appendChild(p);
+ gi++;rivals.forEach(function(r){r.ch=-1});claim();
+}
+function update(dt){
+ if(cd>0){cd-=dt;var cn=Math.ceil(cd-.4);if(cn!==lastCn&&cn<=3){lastCn=cn;tone(cn>0?440:880,.18,"square",.05)}return}
+ t+=dt;
+ var dir=(keyR?1:0)-(keyL?1:0);
+ if(drag!==null)dir=clamp((drag-x)/16,-1,1);
+ if(spin>0)dir*=.4;
+ vx+=dir*1500*dt;if(!dir)vx*=Math.pow(.02,dt);vx=clamp(vx,-290,290);x+=vx*dt;
+ if(x<RL+18){x=RL+18;vx=0}if(x>RR-18){x=RR-18;vx=0}
+ var vb=210+gi*9,tg=vb*(boost>0?1.6:1)*(spin>0?.35:1)*(slow>0?.55:1);
+ v+=(tg-v)*Math.min(1,dt*2.5);dist+=v*dt;
+ boost-=dt;spin-=dt;slow-=dt;shake-=dt;cool-=dt;
+ if(boost>0&&Math.random()<.7)parts.push({x:x+(Math.random()-.5)*10,y:PY+32,vx:(Math.random()-.5)*30,vy:40+Math.random()*60,t:.3,c:Math.random()<.5?"#ff6b35":"#ffc93c",r:3+Math.random()*3});
+ if(spin>0&&Math.random()<.8)parts.push({x:x+(Math.random()-.5)*24,y:PY+(Math.random()-.5)*30,vx:(Math.random()-.5)*50,vy:20,t:.6,c:"rgba(210,215,220,.7)",r:5+Math.random()*6});
+ rivals.forEach(function(r){
+  var gap=r.d-dist;r.d+=vb*clamp(r.k-gap/800,.55,1.3)*dt;
+  r.tk-=dt;if(r.tk<=0){r.tk=2+Math.random()*2;r.tx=lx(Math.floor(Math.random()*NL))}
+  if(gi<N&&r.ch!==gi&&gd(gi)-r.d<460&&gd(gi)-r.d>0){r.ch=gi;var left=Q[gi].a==="fact",right=Math.random()<.65;r.tx=lx(((left===right)?0:4)+Math.floor(Math.random()*4))}
+  r.x+=clamp(r.tx-r.x,-75*dt,75*dt);
+  var dy=r.d-dist;
+  if(cool<=0&&Math.abs(dy)<46&&Math.abs(r.x-x)<30){slow=.9;v*=.6;cool=.7;shake=.3;tone(120,.15,"square",.1,60);var sg=r.x>=x?1:-1;r.x=clamp(r.x+sg*30,RL+18,RR-18);vx-=sg*130;burst((x+r.x)/2,PY-dy,"#ffc93c",10,140);pop("BUMP","#1d2b3a")}
+ });
+ pads.forEach(function(p){if(!p.u&&Math.abs(p.d-dist)<26&&Math.abs(p.x-x)<34){p.u=1;tone(500,.25,"square",.05,1100);boost=Math.max(boost,1.5);pop("ZOOM","#ff6b35")}});
+ parts.forEach(function(q){q.x+=q.vx*dt;q.y+=(q.vy+v*.6)*dt;q.t-=dt});parts=parts.filter(function(q){return q.t>0});
+ txts.forEach(function(q){q.y-=40*dt;q.t-=dt});txts=txts.filter(function(q){return q.t>0});
+ if(gi<N&&dist>=gd(gi))gate();
+ if(dist>=FIN&&!fin){fin=true;run=false;finPos=1+rivals.filter(function(r){return r.d>dist}).length;setTimeout(finish,900)}
+}
+function car(cx,cy,col,rot,me){
+ g.save();g.translate(cx,cy);g.rotate(rot);
+ g.fillStyle="rgba(0,0,0,.3)";g.beginPath();g.ellipse(3,5,19,30,0,0,6.3);g.fill();
+ g.fillStyle="#12202c";[[-18,-17],[11,-17],[-18,9],[11,9]].forEach(function(w){g.beginPath();g.roundRect(w[0],w[1],7,15,2);g.fill()});
+ g.lineWidth=3;g.strokeStyle="#12202c";g.fillStyle=col;g.beginPath();g.roundRect(-12,-26,24,52,9);g.fill();g.stroke();
+ var gr=g.createLinearGradient(-12,0,12,0);gr.addColorStop(0,"rgba(255,255,255,.4)");gr.addColorStop(.5,"rgba(255,255,255,0)");gr.addColorStop(1,"rgba(0,0,0,.3)");
+ g.fillStyle=gr;g.beginPath();g.roundRect(-12,-26,24,52,9);g.fill();
+ if(me){g.fillStyle="rgba(255,255,255,.9)";g.fillRect(-2,-25,4,50)}
+ g.fillStyle="#a8e0ff";g.beginPath();g.roundRect(-8,-12,16,11,3);g.fill();
+ g.fillStyle="#5b8cae";g.beginPath();g.roundRect(-7,5,14,6,2);g.fill();
+ g.fillStyle="#12202c";g.fillRect(-13,22,26,4);
+ g.fillStyle="#fff3a0";g.fillRect(-9,-26,5,3);g.fillRect(4,-26,5,3);
+ g.fillStyle=slow>0&&me?"#ff0000":"#ff3040";g.fillRect(-10,25,6,2);g.fillRect(4,25,6,2);
+ g.restore();
+}
+function tree(tx,ty,r){g.fillStyle="rgba(0,0,0,.2)";g.beginPath();g.arc(tx+4,ty+5,r,0,6.3);g.fill();g.fillStyle="#1f6b33";g.beginPath();g.arc(tx,ty,r,0,6.3);g.fill();g.fillStyle="#2f8f45";g.beginPath();g.arc(tx-r*.3,ty-r*.3,r*.55,0,6.3);g.fill()}
+function draw(){
+ var k,i,xx,ox=shake>0?(Math.random()-.5)*8:0,oy=shake>0?(Math.random()-.5)*8:0;
+ function rows(step,fn){for(var q=Math.floor((dist-H+PY)/step)-1;q*step<=dist+PY+step;q++)fn(q,wy(q*step))}
+ g.save();g.translate(ox,oy);
+ rows(80,function(q,y){g.fillStyle=q&1?"#3fa34d":"#3a9648";g.fillRect(-10,y-80,W+20,80)});
+ rows(100,function(q,y){var f=fr(q),f2=fr(q+99);tree(14+f*(RL-34),y-f2*60,12+f*7);tree(RR+22+f2*(W-RR-34),y-f*60,12+f2*7)});
+ g.fillStyle="#474a50";g.fillRect(RL,-10,RR-RL,H+20);
+ g.fillStyle="rgba(255,255,255,.05)";rows(30,function(q,y){for(var j=0;j<7;j++)g.fillRect(RL+fr(q*5+j)*(RR-RL-4),y-fr(q*3+j)*30,2,3)});
+ rows(40,function(q,y){g.fillStyle=q&1?"#e63946":"#fff";g.fillRect(RL-12,y-40,12,40);g.fillRect(RR,y-40,12,40)});
+ g.fillStyle="rgba(255,255,255,.85)";g.fillRect(RL+3,-10,3,H+20);g.fillRect(RR-6,-10,3,H+20);
+ for(i=1;i<NL;i++){
+  xx=RL+i*LW;
+  if(i===NL/2){g.fillStyle="#ffc93c";rows(40,function(q,y){g.fillRect(xx-3,y-40,6,26)})}
+  else{g.fillStyle="rgba(255,255,255,.55)";rows(60,function(q,y){g.fillRect(xx-1.5,y-60,3,30)})}
+ }
+ pads.forEach(function(p){var y=wy(p.d);if(y<-30||y>H+30||p.u)return;g.fillStyle="#ffc93c";g.fillRect(p.x-24,y-16,48,32);g.strokeStyle="#1d2b3a";g.lineWidth=3;g.strokeRect(p.x-24,y-16,48,32);g.beginPath();for(var j=-1;j<2;j+=2){g.moveTo(p.x-10,y+j*6+4);g.lineTo(p.x,y+j*6-6);g.lineTo(p.x+10,y+j*6+4)}g.stroke()});
+ for(k=Math.max(0,gi-1);k<N;k++){
+  var y=wy(gd(k));if(y>H+70)continue;if(y<-70)break;
+  g.fillStyle="rgba(63,163,77,.35)";g.fillRect(RL,y,CX-RL,44);g.fillStyle="rgba(230,57,70,.35)";g.fillRect(CX,y,RR-CX,44);
+  g.fillStyle="rgba(0,0,0,.28)";g.fillRect(RL,y+2,RR-RL,12);
+  g.fillStyle="#3fa34d";g.fillRect(RL,y-34,CX-RL-3,32);g.fillStyle="#e63946";g.fillRect(CX+3,y-34,RR-CX-3,32);
+  g.strokeStyle="#1d2b3a";g.lineWidth=3;g.strokeRect(RL,y-34,CX-RL-3,32);g.strokeRect(CX+3,y-34,RR-CX-3,32);
+  g.fillStyle="#1d2b3a";g.fillRect(RL-8,y-40,10,50);g.fillRect(CX-5,y-40,10,50);g.fillRect(RR-2,y-40,10,50);
+  if(k===gi){g.save();g.shadowColor="#ffc93c";g.shadowBlur=18;g.strokeStyle="#ffc93c";g.lineWidth=3;g.strokeRect(RL-10,y-42,RR-RL+20,56);g.restore()}
+  g.fillStyle="#fff";g.font="24px 'Russo One',Impact,sans-serif";g.textAlign="center";g.fillText("FACT",(RL+CX)/2,y-10);g.fillText("FAKE",(RR+CX)/2,y-10);
+ }
+ var fy=wy(FIN);if(fy>-40&&fy<H+40){for(i=0;i<(RR-RL)/20;i++)for(k=0;k<2;k++){g.fillStyle=(i+k)&1?"#fff":"#1d2b3a";g.fillRect(RL+i*20,fy-20+k*20,20,20)}}
+ rivals.forEach(function(r){var y=wy(r.d);if(y>-60&&y<H+60)car(r.x,y,r.col,clamp((r.tx-r.x)/220,-.2,.2),0)});
+ if(boost>0){g.fillStyle="rgba(255,255,255,.5)";for(k=0;k<8;k++)g.fillRect(RL+fr(k+Math.floor(t*12))*(RR-RL),fr(k*3+Math.floor(t*20))*H,3,50)}
+ g.save();g.strokeStyle="rgba(255,201,60,"+(.55+.4*Math.sin(t*6))+")";g.lineWidth=4;g.shadowColor="#ffc93c";g.shadowBlur=16;g.beginPath();g.ellipse(x,PY,28,42,0,0,6.3);g.stroke();g.restore();
+ car(x,PY,"#ff6b35",spin>0?spin*12:clamp(vx/900,-.25,.25),1);
+ parts.forEach(function(q){g.globalAlpha=clamp(q.t*2,0,1);g.fillStyle=q.c;g.beginPath();g.arc(q.x,q.y,q.r,0,6.3);g.fill()});g.globalAlpha=1;
+ (function(){
+  var nm="YOU: "+(who.name||"").toUpperCase().slice(0,8),ty=PY-56,w,tx=clamp(x,RL+50,RR-50);
+  g.font="13px 'Russo One',Impact,sans-serif";g.textAlign="center";w=g.measureText(nm).width+22;
+  g.fillStyle="#1d2b3a";g.beginPath();g.roundRect(tx-w/2-2,ty-17,w+4,25,8);g.fill();
+  g.fillStyle="#ffc93c";g.beginPath();g.roundRect(tx-w/2,ty-15,w,21,6);g.fill();
+  g.fillStyle="#1d2b3a";g.fillText(nm,tx,ty);
+  g.beginPath();g.moveTo(x-8,ty+8);g.lineTo(x+8,ty+8);g.lineTo(x,ty+19);g.fill();
+ })();
+ g.font="20px 'Russo One',Impact,sans-serif";g.textAlign="center";
+ txts.forEach(function(q){g.globalAlpha=clamp(q.t*2,0,1);g.fillStyle="#fff";g.strokeStyle=q.c;g.lineWidth=5;g.strokeText(q.s,clamp(q.x,RL+60,RR-60),q.y);g.fillText(q.s,clamp(q.x,RL+60,RR-60),q.y)});g.globalAlpha=1;
+ g.restore();
+ g.fillStyle=VG;g.fillRect(0,0,W,H);
+ if(cd>0){
+  g.fillStyle="rgba(29,43,58,.45)";g.fillRect(0,0,W,H);
+  var n=Math.ceil(cd-.4),sx2=n>0?String(n):"GO!";g.font="110px 'Russo One',Impact,sans-serif";g.fillStyle=n>0?"#ffc93c":"#3fa34d";g.strokeStyle="#1d2b3a";g.lineWidth=8;g.textAlign="center";
+  g.strokeText(sx2,W/2,H/2+38);g.fillText(sx2,W/2,H/2+38);
+ }
+}
+function loop(now){
+ var dt=Math.min((now-last)/1000,.05);last=now;
+ update(dt);draw();hud();
+ if(run||fin&&!$("play").hidden)requestAnimationFrame(loop);
+}
+function finish(){
+ var pos=finPos;
+ pts=Math.round(ok/N*100);show("end");$("final").textContent=pts;
+ $("sRight").textContent=ok+"/"+N;$("sPos").textContent="P"+pos;$("sTime").textContent=t.toFixed(1)+"s";
+ $("rating").textContent=pts===100?"Perfect run. Nothing fooled you.":pts>=80?"Fast and sharp. A couple slipped by.":pts>=50?"Halfway there. Use the three checks.":"Slow down and check before you trust it.";
+ var box=$("missed");box.innerHTML="";var h=document.createElement("h2");
+ if(!miss.length){h.textContent="No wrong gates";box.appendChild(h)}
+ else{
+  h.textContent="What you missed";box.appendChild(h);var ul=document.createElement("ul");ul.className="miss";
+  miss.forEach(function(c){var li=document.createElement("li"),b=document.createElement("b"),s=document.createElement("span");b.textContent=c.t+" ("+(c.a==="fact"?"fact":"fake")+")";s.textContent=c.w;li.appendChild(b);li.appendChild(s);ul.appendChild(li)});
+  box.appendChild(ul);
+ }
+ setRec({pts:pts,saved:false});save();
+}
+function total(){
+ var e=$("tot");e.textContent="";
+ fetch(API+"scores.php").then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(function(d){
+  var me=(d.rows||[]).filter(function(r){return String(r.name).toLowerCase()===who.name.toLowerCase()&&String(r.form).toUpperCase()===who.form})[0];
+  if(me)e.textContent="Your total across all Digiwise games: "+me.total+" points.";
+ }).catch(function(e2){console.error("Total failed",e2)});
+}
+function save(){
+ var st=$("saved"),rt=$("retry");st.textContent="Saving your score.";rt.hidden=true;
+ fetch(API+"submit.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:who.name,form:who.form,game:GAME,points:pts})})
+ .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d}})})
+ .then(function(o){
+  if(o.ok){setRec({pts:pts,saved:true});st.textContent="Score saved and added to your total. Play the other Digiwise games with the same name and form class to add more.";total()}
+  else{st.textContent=(o.d&&o.d.error)||"Couldn’t save your score.";rt.hidden=false}
+ })
+ .catch(function(e){console.error("Save failed",e);st.textContent="Couldn’t reach the leaderboard. Check your connection and try again.";rt.hidden=false});
+}
+function hold(id,fn){var b=$(id);b.addEventListener("pointerdown",function(e){e.preventDefault();fn(1)});["pointerup","pointerleave","pointercancel"].forEach(function(n){b.addEventListener(n,function(){fn(0)})})}
+hold("bL",function(on){keyL=!!on});hold("bR",function(on){keyR=!!on});
+$("bB").onclick=useBoost;
+function px(e){var r=cv.getBoundingClientRect();return (e.clientX-r.left)/r.width*W}
+cv.addEventListener("pointerdown",function(e){drag=px(e)});
+cv.addEventListener("pointermove",function(e){if(drag!==null)drag=px(e)});
+["pointerup","pointerleave","pointercancel"].forEach(function(n){cv.addEventListener(n,function(){drag=null})});
+document.addEventListener("keydown",function(e){
+ if($("play").hidden)return;var k=e.key;
+ if(k==="ArrowLeft"||k==="a"){e.preventDefault();keyL=true}
+ else if(k==="ArrowRight"||k==="d"){e.preventDefault();keyR=true}
+ else if(k===" "||k==="ArrowUp"||k==="w"){e.preventDefault();useBoost()}
+ else if(k==="m")toggleSnd()
+});
+document.addEventListener("keyup",function(e){var k=e.key;if(k==="ArrowLeft"||k==="a")keyL=false;if(k==="ArrowRight"||k==="d")keyR=false});
+document.addEventListener("visibilitychange",function(){if(!document.hidden)last=performance.now()});
+$("go").onclick=function(){
+ var n=$("nick").value.trim().replace(/\s+/g," "),f=$("form").value.trim().toUpperCase(),e=$("err");
+ if(!/^[A-Za-z\u00C0-\u024F' -]{2,20}$/.test(n)){e.textContent="Enter your first name.";return}
+ if(!/^[A-Z0-9]{2,6}$/.test(f)){e.textContent="Enter your form class.";return}
+ n=nm(n);who={name:n,form:f};var rc=rec();
+ if(rc){
+  if(rc.pts!=null&&!rc.saved){e.textContent="";pts=rc.pts;show("end");$("final").textContent=pts;$("rating").textContent="Your score hasn’t been saved yet.";$("missed").innerHTML="";save();return}
+  e.textContent=rc.pts!=null?"You’ve already played this game as "+n+" "+f+" and scored "+rc.pts+". Each student gets one attempt.":"You’ve already started this game as "+n+" "+f+". Each student gets one attempt.";return}
+ e.textContent="";
+ try{localStorage.setItem("dw_who",JSON.stringify(who))}catch(x){}
+ setRec({pts:null,saved:false});start();
+};
+$("snd").onclick=toggleSnd;$("retry").onclick=save;
+try{var sv=JSON.parse(localStorage.getItem("dw_who")||"null");if(sv){$("nick").value=sv.name||"";$("form").value=sv.form||""}}catch(x){}
+window.addEventListener("resize",function(){if(!$("play").hidden)layout()});
+</script>
+</body>
+</html>
