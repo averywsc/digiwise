@@ -48,9 +48,14 @@ a{color:#0f7a60}
 .tile{position:relative;display:grid;place-items:center;width:56px;height:56px;border-radius:14px;color:#0b2a22;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2790%27%20height%3D%2790%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%27.85%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%20%200%200%200%200%201%20%200%200%200%200%201%20%200%201.2%200%200%20-.58%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"),repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 1px,rgba(255,255,255,0) 1px 4px),radial-gradient(circle at 50% 125%,var(--b) 0,var(--a) 75%);border:1px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.55),2px 4px 8px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.5),inset 0 3px 4px rgba(255,255,255,.55),inset 0 -8px 12px rgba(0,0,0,.3);overflow:hidden}
 .tile::before{content:"";position:absolute;left:8px;right:8px;bottom:2px;height:24%;border-radius:50%;background:radial-gradient(ellipse at 50% 100%,rgba(255,255,255,.65),transparent 70%)}
 .tile::after{content:"";position:absolute;left:3px;right:3px;top:2px;height:50%;border-radius:12px 12px 26px 26px/12px 12px 14px 14px;background:linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.14))}
-.tile svg{position:relative;z-index:1;width:28px;height:28px;filter:drop-shadow(0 1px 0 rgba(255,255,255,.7)) drop-shadow(0 -1px 0 rgba(0,0,0,.28))}
+.tile svg{position:relative;z-index:1;width:36px;height:36px;filter:drop-shadow(0 1px 0 rgba(255,255,255,.7)) drop-shadow(0 2px 2px rgba(0,0,0,.3))}
 .t-games{--a:#c3f9a6;--b:#1f9f54}.t-board{--a:#f5fbff;--b:#5f86a6}.t-mail{--a:#c6f1ff;--b:#1d86bf}.t-ph{--a:#eef2f3;--b:#7f9097}
 
+.icons .ico:hover,.icons .ico:focus-visible{background:none;border-color:transparent}
+.icons .ico .tile{transition:transform .18s}
+.icons .ico:hover .tile,.icons .ico:focus-visible .tile{transform:translateY(-3px)}
+.lb{display:block;max-width:100%;padding:0 2px;font-weight:800;letter-spacing:.015em;line-height:1.15;color:#fff;background:none;text-shadow:0 1px 0 #0d6b57,0 2px 0 #0a4d3f,0 3px 4px rgba(0,0,0,.6),0 0 10px rgba(0,0,0,.35);-webkit-box-reflect:below -3px linear-gradient(transparent 52%,rgba(255,255,255,.22))}
+.ico:hover .lb,.ico:focus-visible .lb{color:#e6fff6;text-shadow:0 1px 0 #0d6b57,0 2px 0 #0a4d3f,0 3px 4px rgba(0,0,0,.6),0 0 12px rgba(130,255,215,.9)}
 .widget{position:absolute;right:16px;top:16px;width:236px;padding:0 4px 4px;border-radius:9px 9px 2px 2px;border:1px solid var(--gd);background:var(--g3);box-shadow:4px 6px 18px rgba(0,0,0,.55);overflow:hidden}
 .wtb{height:28px;margin:0 -4px;padding:0 10px;display:flex;align-items:center;font:700 .9rem "Trebuchet MS","Fira Sans",Tahoma,sans-serif;color:#fff;text-shadow:1px 1px 0 #0c3d30;background:linear-gradient(180deg,var(--g1) 0,#34b794 9%,#1f9a7b 44%,#1f9a7b 88%,#146f5a 100%);border-radius:8px 8px 0 0}
 .widget .in{padding:6px 10px;background:var(--paper);color:var(--ink);border:1px solid var(--gd)}
@@ -70,7 +75,7 @@ a{color:#0f7a60}
 .tb{display:flex;align-items:center;justify-content:space-between;gap:8px;height:30px;margin:0 -4px;padding:0 5px 0 9px;cursor:grab;touch-action:none;color:#fff;background:linear-gradient(180deg,var(--tt) 0,var(--ta) 9%,var(--tb) 44%,var(--tb) 88%,var(--tc) 100%);border-radius:8px 8px 0 0}
 .ti{display:flex;align-items:center;gap:7px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:700 .95rem "Trebuchet MS","Fira Sans",Tahoma,sans-serif;text-shadow:1px 1px 0 #0c3d30}
 .ti .tile{width:20px;height:20px;border-radius:5px;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
-.ti .tile svg{width:12px;height:12px}.ti .tile::after,.ti .tile::before{display:none}
+.ti .tile svg{width:14px;height:14px}.ti .tile::after,.ti .tile::before{display:none}
 .wc{display:flex;gap:3px}
 .wb2{display:grid;place-items:center;width:22px;height:22px;padding:0;border-radius:4px;border:1px solid #fff;color:#fff;background:radial-gradient(circle at 28% 22%,#b6f5e3 0,#37b996 55%,#1a8a6f 100%);box-shadow:inset 0 0 3px rgba(255,255,255,.7);cursor:pointer;text-decoration:none;font:700 .85rem Tahoma,sans-serif;line-height:1;text-shadow:0 1px 1px rgba(0,0,0,.45)}
 .wb2.cl{background:radial-gradient(circle at 28% 22%,#ffcfbf 0,#e5643f 55%,#b93b1a 100%)}
@@ -136,7 +141,7 @@ a{color:#0f7a60}
 .mbd{padding:6px}
 #menu .ico{grid-template-columns:36px 1fr;justify-items:start;align-items:center;width:100%;height:auto;padding:5px 8px;text-align:left;color:var(--ink);text-shadow:none;font-size:.95rem;gap:10px}
 #menu .ico:hover{background:#2a8f78;color:#fff;border-color:transparent}
-#menu .tile{width:34px;height:34px;border-radius:9px}#menu .tile svg{width:18px;height:18px}
+#menu .tile{width:34px;height:34px;border-radius:9px}#menu .tile svg{width:23px;height:23px}
 
 @media (max-width:700px){
  .icons{right:10px;grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));grid-auto-columns:auto;bottom:auto}
@@ -150,6 +155,7 @@ a{color:#0f7a60}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#e0eae7"/><stop offset="1" stop-color="#a9bab5"/></linearGradient><linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#25705d"/><stop offset="1" stop-color="#0a2c25"/></linearGradient></defs></svg>
 <h1 class="sr">Digiwise at Western Springs College</h1>
 <div class="bg" aria-hidden="true"></div>
 <div class="beams" aria-hidden="true"></div>
@@ -162,12 +168,12 @@ a{color:#0f7a60}
 
 <main class="desk" id="desk">
  <nav class="icons" aria-label="Desktop">
-  <button class="ico" data-app="games"><span class="tile t-games" data-g="games"></span>Games</button>
-  <button class="ico" data-app="board"><span class="tile t-board" data-g="board"></span>Leaderboard</button>
-  <button class="ico" data-app="ph1"><span class="tile t-ph" data-g="ph"></span>Placeholder</button>
-  <button class="ico" data-app="ph2"><span class="tile t-ph" data-g="ph"></span>Placeholder</button>
-  <button class="ico" data-app="ph3"><span class="tile t-ph" data-g="ph"></span>Placeholder</button>
-  <button class="ico" data-app="contact"><span class="tile t-mail" data-g="mail"></span>Talk to a leader</button>
+  <button class="ico" data-app="games"><span class="tile t-games" data-g="games"></span><span class="lb">Games</span></button>
+  <button class="ico" data-app="board"><span class="tile t-board" data-g="board"></span><span class="lb">Leaderboard</span></button>
+  <button class="ico" data-app="ph1"><span class="tile t-ph" data-g="ph"></span><span class="lb">Placeholder</span></button>
+  <button class="ico" data-app="ph2"><span class="tile t-ph" data-g="ph"></span><span class="lb">Placeholder</span></button>
+  <button class="ico" data-app="ph3"><span class="tile t-ph" data-g="ph"></span><span class="lb">Placeholder</span></button>
+  <button class="ico" data-app="contact"><span class="tile t-mail" data-g="mail"></span><span class="lb">Talk to a leader</span></button>
  </nav>
  <aside class="widget" aria-label="Top players">
   <div class="wtb">Top players</div>
@@ -193,10 +199,10 @@ a{color:#0f7a60}
 var $=function(i){return document.getElementById(i)},desk=$("desk"),tasks=$("tasks"),zi=20,W={},count=0;
 var API="https://projectspace.nz/xbbhjgpp/digiwise/";
 var SVG={
- games:'<svg viewBox="0 0 32 32"><rect x="3" y="9" width="26" height="15" rx="7" fill="currentColor"/><path d="M10 13v7M6.5 16.5h7" stroke="#e9fff5" stroke-width="2.2" stroke-linecap="round"/><circle cx="21" cy="15" r="1.7" fill="#e9fff5"/><circle cx="24.5" cy="18.5" r="1.7" fill="#e9fff5"/></svg>',
- board:'<svg viewBox="0 0 32 32"><rect x="5" y="16" width="6" height="10" rx="1.5" fill="currentColor"/><rect x="13" y="7" width="6" height="19" rx="1.5" fill="currentColor"/><rect x="21" y="12" width="6" height="14" rx="1.5" fill="currentColor"/></svg>',
- ph:'<svg viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-dasharray="4 3"/></svg>',
- mail:'<svg viewBox="0 0 32 32"><rect x="4" y="8" width="24" height="16" rx="3" fill="currentColor"/><path d="M5 10l11 8 11-8" fill="none" stroke="#eaf6ff" stroke-width="2"/></svg>'
+ games:'<svg viewBox="0 0 48 48"><path d="M13 15h22c5.2 0 8.6 4.2 9.8 10.7l1.4 7.4c.8 4.2-1.7 7.4-5.4 7.4-2.8 0-4.5-1.5-6.3-3.6L32.6 33H15.4l-3.5 3.9c-1.8 2.1-3.5 3.6-6.3 3.6-3.7 0-6.2-3.2-5.4-7.4l1.4-7.4C4.4 19.2 7.8 15 13 15z" fill="url(#gl)" stroke="#0b3a2f" stroke-opacity=".55" stroke-width="1.3"/><path d="M16 21v8M12 25h8" stroke="url(#gd)" stroke-width="3.2" stroke-linecap="round"/><circle cx="31.5" cy="22.5" r="2.5" fill="url(#gd)"/><circle cx="36.5" cy="27.5" r="2.5" fill="url(#gd)"/><path d="M14 18c4-1.5 16-1.5 20 0" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>',
+ board:'<svg viewBox="0 0 48 48"><rect x="6" y="28" width="10" height="14" rx="2" fill="url(#gl)" stroke="#0b3a2f" stroke-opacity=".55" stroke-width="1.3"/><rect x="19" y="17" width="10" height="25" rx="2" fill="url(#gl)" stroke="#0b3a2f" stroke-opacity=".55" stroke-width="1.3"/><rect x="32" y="23" width="10" height="19" rx="2" fill="url(#gl)" stroke="#0b3a2f" stroke-opacity=".55" stroke-width="1.3"/><path d="M24 3.5l2.1 4.4 4.8.7-3.5 3.4.8 4.8-4.2-2.3-4.2 2.3.8-4.8-3.5-3.4 4.8-.7z" fill="url(#gl)" stroke="#0b3a2f" stroke-opacity=".55" stroke-width="1.3"/></svg>',
+ ph:'<svg viewBox="0 0 48 48"><rect x="7" y="9" width="34" height="30" rx="5" fill="#fff" fill-opacity=".35" stroke="url(#gd)" stroke-width="2.6" stroke-dasharray="5 4"/><path d="M12 33l9-10 6 7 4-4 5 7z" fill="url(#gd)"/><circle cx="31" cy="18" r="3.2" fill="url(#gd)"/></svg>',
+ mail:'<svg viewBox="0 0 48 48"><rect x="5" y="11" width="38" height="26" rx="4" fill="url(#gl)" stroke="#0b3a2f" stroke-opacity=".55" stroke-width="1.3"/><path d="M7 14l17 13L41 14" fill="none" stroke="#2f7fa8" stroke-width="2.4" stroke-linejoin="round"/><path d="M7 35l12-10M41 35L29 25" stroke="#2f7fa8" stroke-opacity=".55" stroke-width="1.6"/></svg>'
 };
 var ROS='<svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#140a2e" stroke="#27e1ff" stroke-width="3"/><rect x="12" y="11" width="40" height="15" rx="4" fill="#2d1a6b" stroke="#4b30a0" stroke-width="2"/><rect x="12" y="11" width="7" height="15" rx="3" fill="#ff3d9a"/><rect x="12" y="30" width="40" height="15" rx="4" fill="#2d1a6b" stroke="#4b30a0" stroke-width="2"/><rect x="12" y="30" width="7" height="15" rx="3" fill="#27e1ff"/><line x1="8" y1="53" x2="56" y2="53" stroke="#ff4d5e" stroke-width="3" stroke-dasharray="6 4"/></svg>';
 var FOF='<svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#fff2cc" stroke="#1d2b3a" stroke-width="4"/><g fill="#1d2b3a"><rect x="12" y="8" width="8" height="6"/><rect x="28" y="8" width="8" height="6"/><rect x="44" y="8" width="8" height="6"/><rect x="20" y="14" width="8" height="6"/><rect x="36" y="14" width="8" height="6"/></g><rect x="24" y="26" width="16" height="30" rx="6" fill="#ff6b35" stroke="#1d2b3a" stroke-width="3"/><rect x="27" y="32" width="10" height="8" rx="2" fill="#1d2b3a"/><rect x="20" y="30" width="4" height="9" rx="1.5" fill="#1d2b3a"/><rect x="40" y="30" width="4" height="9" rx="1.5" fill="#1d2b3a"/><rect x="20" y="46" width="4" height="9" rx="1.5" fill="#1d2b3a"/><rect x="40" y="46" width="4" height="9" rx="1.5" fill="#1d2b3a"/></svg>';
