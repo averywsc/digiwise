@@ -7,6 +7,7 @@
 <title>Real or scam | Digiwise</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Barlow:wght@400;500;600;700&display=swap">
 <style>
+/* neon bits and card styling */
 :root{color-scheme:dark;--bg:#140a2e;--pan:#1f1147;--ink:#f4efff;--soft:#b7a9e0;--pink:#ff3d9a;--cyan:#27e1ff;--yel:#ffd23f;--grn:#3dff9a;--red:#ff4d5e;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit}
@@ -111,6 +112,7 @@ background:linear-gradient(180deg,rgba(20,10,46,.2),rgba(255,61,154,.12)),repeat
 </style>
 </head>
 <body>
+<!-- same flow intro then play then end -->
 <main>
 <h1>Real or scam</h1>
 <p class="soft sub" style="margin-top:10px">Messages drop into your inbox. Block the scams, keep the real ones.</p>
@@ -175,9 +177,11 @@ background:linear-gradient(180deg,rgba(20,10,46,.2),rgba(255,61,154,.12)),repeat
 <div class="flash" id="flash"></div>
 
 <script>
+// message list and game setup
+// message data
 var S=[
 {c:"Text",f:"NZ Post",t:"Your parcel couldn’t be delivered. Pay a $2.50 redelivery fee at nzpost-redeliver.co or it will be returned.",a:"scam",w:"A surprise fee, a deadline and an odd web address. Couriers don’t ask for card details by text."},
-{c:"Snapchat",f:"your mate",t:"bro is this you in this video lol snapvid-watch.com/u/8841",a:"scam",w:"A hacked account sending the same line to everyone. Ask them on another app before you tap."},
+{c:"Snapchat",f:"your mate",t:"bro is this you in this video snapvid-watch.com/u/8841",a:"scam",w:"A hacked account sending the same line to everyone. Ask them on another app before you tap."},
 {c:"Email",f:"Google",t:"New sign-in on a Windows device. If this was you, you don’t need to do anything. If it wasn’t, review your account security.",a:"real",w:"No pressure and no link demanded. Even so, open your account yourself instead of using any link."},
 {c:"Instagram",f:"Instagram Support",t:"Your account will be deleted in 24 hours due to a copyright violation. Appeal now at ig-appeal-center.net",a:"scam",w:"Fear, a countdown and a look-alike domain. Real appeals happen inside the app."},
 {c:"Text",f:"School Office",t:"Reminder from the school office. Year 12 trip forms are due this Friday. Details are on the school website.",a:"real",w:"Expected, specific and no login link. It points you to a place you already know."},
@@ -197,6 +201,8 @@ var $=function(i){return document.getElementById(i)};
 var API="https://projectspace.nz/xbbhjgpp/digiwise/",GAME="real-or-scam",lane=$("lane");
 var bons,bon,Q,sp,done,ok,combo,bestCombo,lives,charge,slow,cards,miss,run,last,lastSp,pts,who={name:"",form:""};
 
+// saved player data
+// tidy names before saving
 function nm(s){return s.trim().replace(/\s+/g," ").toLowerCase().replace(/(^|[ '-])([a-z\u00e0-\u024f])/g,function(m,a,b){return a+b.toUpperCase()})}
 function dk(){return "dw_done:"+GAME+":"+who.name.toLowerCase()+"|"+who.form}
 function rec(){try{return JSON.parse(localStorage.getItem(dk())||"null")}catch(e){return null}}
@@ -225,6 +231,7 @@ function burst(y,col){
   lane.appendChild(d);setTimeout(function(e){return function(){e.remove()}}(d),650);
  }
 }
+// start a fresh run and count down
 function start(){
  Q=shuffle(S);sp=0;done=0;ok=0;combo=0;bestCombo=0;lives=3;charge=0;slow=0;cards=[];miss=[];lastSp=0;bons=[];bon={};
  lane.innerHTML='<div id="wave"></div>';lane.classList.remove("slow");
@@ -249,6 +256,7 @@ function tick(t){
  if(cards.length&&cards[0].y+cards[0].h>=H-30)resolve("late");
  if(run)requestAnimationFrame(tick);
 }
+// deal with selected button or card
 function resolve(ch){
  if(!run||!cards.length)return;
  var c=cards.shift(),m=c.m,good=ch===m.a,y=Math.max(30,c.y+c.h/2);
